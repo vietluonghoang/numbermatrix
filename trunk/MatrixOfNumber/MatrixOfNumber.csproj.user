@@ -1,0 +1,5 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ReferencePath>D:\CSProject\HtmlAgilityPack.1.4.6\Net20\;D:\CSProject\HtmlAgilityPack.1.4.6\Net45\;D:\CSProject\HtmlAgilityPack.1.4.6\</ReferencePath>
+  </PropertyGroup>
+</Project>
