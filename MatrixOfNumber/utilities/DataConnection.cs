@@ -11,7 +11,7 @@ namespace MatrixOfNumber.utilities
     class DataConnection
     {
         private string connectionString = "Data Source=IOWA;Initial Catalog=MatrixOfNumbers;Persist Security Info=True;User ID=sa;Password=123456";
-       
+
         public DataConnection()
         {
 
@@ -19,22 +19,108 @@ namespace MatrixOfNumber.utilities
 
         private SqlConnection getConnection()
         {
-            SqlConnection conn=new SqlConnection();
+            SqlConnection conn = new SqlConnection();
             conn.ConnectionString = connectionString;
             conn.Open();
             return conn;
         }
         private bool isMatrixExisted(string date)
         {
-            SqlConnection con = getConnection();
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("isMatrixExistedByDate", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@date", date));
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
             return false;
         }
 
+        public DataSet GetNumberByDate(string date)
+        {
+            if (!isMatrixExisted(date))
+            {
+                return null;
+            }
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("viewNumbersByDate", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@date", date));
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            return ds;
+        }
+
+        public bool CreateNewMatrix(string date)
+        {
+            if (isMatrixExisted(date))
+            {
+                return false;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("addNewMatrix", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@date", date));
+
+                int rs = cmd.ExecuteNonQuery();
+                if (rs > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool AddNewNumber(string date, int kID, int nType, int nNumber, int nCoin)
+        {
+            if (!isMatrixExisted(date))
+            {
+                return false;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("addNewNumber", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@date", date));
+                cmd.Parameters.Add(new SqlParameter("@kID", kID));
+                cmd.Parameters.Add(new SqlParameter("@nType", nType));
+                cmd.Parameters.Add(new SqlParameter("@nNumber", nNumber));
+                cmd.Parameters.Add(new SqlParameter("@nCoin", nCoin));
+                int rs = cmd.ExecuteNonQuery();
+                if (rs > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
         public DataSet GetAllUsersByName(string name)
         {
             if (name.Contains("'"))
             {
-                name=name.Replace("'", "\'");
+                name = name.Replace("'", "\'");
             }
             SqlConnection conn = getConnection();
             SqlCommand cmd = new SqlCommand("viewUserByName", conn);
@@ -60,11 +146,11 @@ namespace MatrixOfNumber.utilities
 
         public bool AddNewCustomer(string blID, string bdID, string name, string contact, string balance)
         {
-            if (blID.Contains("'") ||bdID.Contains("'") ||name.Contains("'") || contact.Contains("'") || balance.Contains("'"))
+            if (blID.Contains("'") || bdID.Contains("'") || name.Contains("'") || contact.Contains("'") || balance.Contains("'"))
             {
                 blID = blID.Replace("'", "\'");
                 bdID = bdID.Replace("'", "\'");
-                name=name.Replace("'", "\'");
+                name = name.Replace("'", "\'");
                 contact = contact.Replace("'", "\'");
                 balance = balance.Replace("'", "\'");
             }
@@ -95,7 +181,7 @@ namespace MatrixOfNumber.utilities
             return false;
         }
 
-        public bool editCustomer(int kID,int blID,int bdID,string name,string contact,string balance)
+        public bool editCustomer(int kID, int blID, int bdID, string name, string contact, string balance)
         {
             if (blID <= 0 || bdID <= 0 || kID <= 0)
             {
@@ -157,8 +243,8 @@ namespace MatrixOfNumber.utilities
             return ds;
         }
 
-        public DataSet GetUserHistoryByID(int kid,string from,string to)
-        {            
+        public DataSet GetUserHistoryByID(int kid, string from, string to)
+        {
             SqlConnection conn = getConnection();
             SqlCommand cmd = new SqlCommand("viewUserHistoryByDate", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -169,27 +255,27 @@ namespace MatrixOfNumber.utilities
             DataSet ds = new DataSet();
             DataTable tb = new DataTable();
             ds.Tables.Add(tb);
-            DataColumn col=new DataColumn("id",typeof(int));
+            DataColumn col = new DataColumn("id", typeof(int));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("name",typeof(string));
+            col = new DataColumn("name", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("contact",typeof(string));
+            col = new DataColumn("contact", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("oldLoBase",typeof(string));
+            col = new DataColumn("oldLoBase", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("newLoBase",typeof(string));
+            col = new DataColumn("newLoBase", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("oldDeBase",typeof(string));
+            col = new DataColumn("oldDeBase", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("newDeBase",typeof(string));
+            col = new DataColumn("newDeBase", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("oldBalance",typeof(string));
+            col = new DataColumn("oldBalance", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("newBalance",typeof(string));
+            col = new DataColumn("newBalance", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            col=new DataColumn("date",typeof(string));
+            col = new DataColumn("date", typeof(string));
             ds.Tables[0].Columns.Add(col);
-            
+
             DataRow row;
             DataValidation dv = new DataValidation();
             while (dr.Read())
