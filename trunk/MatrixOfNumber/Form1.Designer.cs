@@ -170,7 +170,7 @@ namespace MatrixOfNumber
                 //prepare current date
                 DateTime currentDate = DateTime.Now;
                 DateTime date;
-                if (currentDate.Hour >= 19)
+                if ((currentDate.Hour >= 18 && currentDate.Minute > 30)||(currentDate.Hour >= 19))
                 {
                     date = currentDate;
                 }
@@ -179,7 +179,7 @@ namespace MatrixOfNumber
                     date = currentDate.AddHours(-24);
                 }
 
-                string datetime = String.Format("{0:dd-MM-yyyy}", date);
+                string datetime = String.Format("{0:d-M-yyyy}", date);
                 lblDate.Text = datetime;
                 //prepare result of the day
                 initResult(datetime);
