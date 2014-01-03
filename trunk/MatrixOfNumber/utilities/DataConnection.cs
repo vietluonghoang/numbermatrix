@@ -91,6 +91,10 @@ namespace MatrixOfNumber.utilities
             {
                 return false;
             }
+            if (date==null||"".Equals(date) || kID <= 0 || nType < 0 || nType > 1 || nNumber < 0 || nNumber > 99 || nCoin <= 0)
+            {
+                return false;
+            }
             try
             {
                 SqlConnection conn = getConnection();
@@ -116,6 +120,32 @@ namespace MatrixOfNumber.utilities
                 return false;
             }
         }
+
+        public DataSet ViewNumberDetails(string date, int type, int number)
+        {
+            if (date == null || "".Equals(date) || type < 0 || type > 1 || number < 0 || number > 99 )
+            {
+                return null;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("viewNumberDetails", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@date", date));
+                cmd.Parameters.Add(new SqlParameter("@nType", type));
+                cmd.Parameters.Add(new SqlParameter("@nNumber", number));
+                SqlDataAdapter adater = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adater.Fill(ds);
+                return ds;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public DataSet GetAllUsersByName(string name)
         {
             if (name.Contains("'"))

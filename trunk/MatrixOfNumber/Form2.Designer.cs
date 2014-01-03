@@ -41,20 +41,20 @@ namespace MatrixOfNumber
             this.dgvKhach = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tbBang = new System.Windows.Forms.TabPage();
-            this.tbCoso = new System.Windows.Forms.TabPage();
-            this.lblErrorMsg = new System.Windows.Forms.Label();
-            this.btnXembang = new System.Windows.Forms.Button();
-            this.dtpBang = new System.Windows.Forms.DateTimePicker();
-            this.gbDe = new System.Windows.Forms.GroupBox();
+            this.lblDateBang = new System.Windows.Forms.Label();
             this.btnXemketqua = new System.Windows.Forms.Button();
+            this.gbDe = new System.Windows.Forms.GroupBox();
+            this.btnDeXemso = new System.Windows.Forms.Button();
+            this.btnDeThemso = new System.Windows.Forms.Button();
             this.dgvDe = new System.Windows.Forms.DataGridView();
             this.gbLo = new System.Windows.Forms.GroupBox();
+            this.btnLoXemso = new System.Windows.Forms.Button();
+            this.btnLoThemso = new System.Windows.Forms.Button();
             this.dgvLo = new System.Windows.Forms.DataGridView();
             this.btnTaobang = new System.Windows.Forms.Button();
-            this.btnLoThemso = new System.Windows.Forms.Button();
-            this.btnLoXemso = new System.Windows.Forms.Button();
-            this.btnDeThemso = new System.Windows.Forms.Button();
-            this.btnDeXemso = new System.Windows.Forms.Button();
+            this.dtpBang = new System.Windows.Forms.DateTimePicker();
+            this.tbCoso = new System.Windows.Forms.TabPage();
+            this.lblErrorMsg = new System.Windows.Forms.Label();
             this.tabMain.SuspendLayout();
             this.tbKhach.SuspendLayout();
             this.gbSearch.SuspendLayout();
@@ -210,11 +210,11 @@ namespace MatrixOfNumber
             // 
             // tbBang
             // 
+            this.tbBang.Controls.Add(this.lblDateBang);
             this.tbBang.Controls.Add(this.btnXemketqua);
             this.tbBang.Controls.Add(this.gbDe);
             this.tbBang.Controls.Add(this.gbLo);
             this.tbBang.Controls.Add(this.btnTaobang);
-            this.tbBang.Controls.Add(this.btnXembang);
             this.tbBang.Controls.Add(this.dtpBang);
             this.tbBang.Location = new System.Drawing.Point(4, 22);
             this.tbBang.Name = "tbBang";
@@ -224,43 +224,25 @@ namespace MatrixOfNumber
             this.tbBang.Text = "Bảng";
             this.tbBang.UseVisualStyleBackColor = true;
             // 
-            // tbCoso
+            // lblDateBang
             // 
-            this.tbCoso.Location = new System.Drawing.Point(4, 22);
-            this.tbCoso.Name = "tbCoso";
-            this.tbCoso.Size = new System.Drawing.Size(680, 439);
-            this.tbCoso.TabIndex = 2;
-            this.tbCoso.Text = "Cơ sở";
-            this.tbCoso.UseVisualStyleBackColor = true;
+            this.lblDateBang.AutoSize = true;
+            this.lblDateBang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateBang.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblDateBang.Location = new System.Drawing.Point(256, 27);
+            this.lblDateBang.Name = "lblDateBang";
+            this.lblDateBang.Size = new System.Drawing.Size(47, 15);
+            this.lblDateBang.TabIndex = 10;
+            this.lblDateBang.Text = "Ngày: ";
             // 
-            // lblErrorMsg
+            // btnXemketqua
             // 
-            this.lblErrorMsg.AutoSize = true;
-            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMsg.Location = new System.Drawing.Point(29, 489);
-            this.lblErrorMsg.Name = "lblErrorMsg";
-            this.lblErrorMsg.Size = new System.Drawing.Size(0, 13);
-            this.lblErrorMsg.TabIndex = 6;
-            // 
-            // btnXembang
-            // 
-            this.btnXembang.Location = new System.Drawing.Point(362, 17);
-            this.btnXembang.Name = "btnXembang";
-            this.btnXembang.Size = new System.Drawing.Size(75, 23);
-            this.btnXembang.TabIndex = 8;
-            this.btnXembang.Text = "Xem";
-            this.btnXembang.UseVisualStyleBackColor = true;
-            this.btnXembang.Click += new System.EventHandler(this.btnXembang_Click);
-            // 
-            // dtpBang
-            // 
-            this.dtpBang.CustomFormat = "d-M-yyyy";
-            this.dtpBang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBang.Location = new System.Drawing.Point(236, 20);
-            this.dtpBang.Name = "dtpBang";
-            this.dtpBang.Size = new System.Drawing.Size(120, 20);
-            this.dtpBang.TabIndex = 6;
-            this.dtpBang.Value = DateTime.Now;
+            this.btnXemketqua.Location = new System.Drawing.Point(596, 19);
+            this.btnXemketqua.Name = "btnXemketqua";
+            this.btnXemketqua.Size = new System.Drawing.Size(75, 23);
+            this.btnXemketqua.TabIndex = 2;
+            this.btnXemketqua.Text = "Xem kết quả";
+            this.btnXemketqua.UseVisualStyleBackColor = true;
             // 
             // gbDe
             // 
@@ -274,14 +256,25 @@ namespace MatrixOfNumber
             this.gbDe.TabStop = false;
             this.gbDe.Text = "Đề";
             // 
-            // btnXemketqua
+            // btnDeXemso
             // 
-            this.btnXemketqua.Location = new System.Drawing.Point(536, 17);
-            this.btnXemketqua.Name = "btnXemketqua";
-            this.btnXemketqua.Size = new System.Drawing.Size(75, 23);
-            this.btnXemketqua.TabIndex = 2;
-            this.btnXemketqua.Text = "Xem kết quả";
-            this.btnXemketqua.UseVisualStyleBackColor = true;
+            this.btnDeXemso.Location = new System.Drawing.Point(188, 83);
+            this.btnDeXemso.Name = "btnDeXemso";
+            this.btnDeXemso.Size = new System.Drawing.Size(75, 23);
+            this.btnDeXemso.TabIndex = 2;
+            this.btnDeXemso.Text = "Xem chi tiết";
+            this.btnDeXemso.UseVisualStyleBackColor = true;
+            this.btnDeXemso.Click += new System.EventHandler(this.btnDeXemso_Click);
+            // 
+            // btnDeThemso
+            // 
+            this.btnDeThemso.Location = new System.Drawing.Point(188, 54);
+            this.btnDeThemso.Name = "btnDeThemso";
+            this.btnDeThemso.Size = new System.Drawing.Size(75, 23);
+            this.btnDeThemso.TabIndex = 1;
+            this.btnDeThemso.Text = "Thêm số";
+            this.btnDeThemso.UseVisualStyleBackColor = true;
+            this.btnDeThemso.Click += new System.EventHandler(this.btnDeThemso_Click);
             // 
             // dgvDe
             // 
@@ -310,6 +303,26 @@ namespace MatrixOfNumber
             this.gbLo.TabStop = false;
             this.gbLo.Text = "Lô";
             // 
+            // btnLoXemso
+            // 
+            this.btnLoXemso.Location = new System.Drawing.Point(200, 83);
+            this.btnLoXemso.Name = "btnLoXemso";
+            this.btnLoXemso.Size = new System.Drawing.Size(75, 23);
+            this.btnLoXemso.TabIndex = 11;
+            this.btnLoXemso.Text = "Xem chi tiết";
+            this.btnLoXemso.UseVisualStyleBackColor = true;
+            this.btnLoXemso.Click += new System.EventHandler(this.btnLoXemso_Click);
+            // 
+            // btnLoThemso
+            // 
+            this.btnLoThemso.Location = new System.Drawing.Point(200, 54);
+            this.btnLoThemso.Name = "btnLoThemso";
+            this.btnLoThemso.Size = new System.Drawing.Size(75, 23);
+            this.btnLoThemso.TabIndex = 10;
+            this.btnLoThemso.Text = "Thêm số";
+            this.btnLoThemso.UseVisualStyleBackColor = true;
+            this.btnLoThemso.Click += new System.EventHandler(this.btnLoThemso_Click);
+            // 
             // dgvLo
             // 
             this.dgvLo.AllowUserToAddRows = false;
@@ -327,7 +340,7 @@ namespace MatrixOfNumber
             // 
             // btnTaobang
             // 
-            this.btnTaobang.Location = new System.Drawing.Point(455, 17);
+            this.btnTaobang.Location = new System.Drawing.Point(453, 24);
             this.btnTaobang.Name = "btnTaobang";
             this.btnTaobang.Size = new System.Drawing.Size(75, 23);
             this.btnTaobang.TabIndex = 9;
@@ -335,43 +348,34 @@ namespace MatrixOfNumber
             this.btnTaobang.UseVisualStyleBackColor = true;
             this.btnTaobang.Click += new System.EventHandler(this.btnTaobang_Click);
             // 
-            // btnLoThemso
+            // dtpBang
             // 
-            this.btnLoThemso.Location = new System.Drawing.Point(200, 54);
-            this.btnLoThemso.Name = "btnLoThemso";
-            this.btnLoThemso.Size = new System.Drawing.Size(75, 23);
-            this.btnLoThemso.TabIndex = 10;
-            this.btnLoThemso.Text = "Thêm số";
-            this.btnLoThemso.UseVisualStyleBackColor = true;
-            this.btnLoThemso.Click += new System.EventHandler(this.btnLoThemso_Click);
+            this.dtpBang.CustomFormat = "d-M-yyyy";
+            this.dtpBang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpBang.Location = new System.Drawing.Point(309, 27);
+            this.dtpBang.Name = "dtpBang";
+            this.dtpBang.Size = new System.Drawing.Size(120, 20);
+            this.dtpBang.TabIndex = 6;
+            this.dtpBang.Value = new System.DateTime(2014, 1, 3, 12, 34, 37, 119);
+            this.dtpBang.ValueChanged += new System.EventHandler(this.dtpBang_ValueChanged);
             // 
-            // btnLoXemso
+            // tbCoso
             // 
-            this.btnLoXemso.Location = new System.Drawing.Point(200, 83);
-            this.btnLoXemso.Name = "btnLoXemso";
-            this.btnLoXemso.Size = new System.Drawing.Size(75, 23);
-            this.btnLoXemso.TabIndex = 11;
-            this.btnLoXemso.Text = "Xem chi tiết";
-            this.btnLoXemso.UseVisualStyleBackColor = true;
+            this.tbCoso.Location = new System.Drawing.Point(4, 22);
+            this.tbCoso.Name = "tbCoso";
+            this.tbCoso.Size = new System.Drawing.Size(680, 439);
+            this.tbCoso.TabIndex = 2;
+            this.tbCoso.Text = "Cơ sở";
+            this.tbCoso.UseVisualStyleBackColor = true;
             // 
-            // btnDeThemso
+            // lblErrorMsg
             // 
-            this.btnDeThemso.Location = new System.Drawing.Point(188, 54);
-            this.btnDeThemso.Name = "btnDeThemso";
-            this.btnDeThemso.Size = new System.Drawing.Size(75, 23);
-            this.btnDeThemso.TabIndex = 1;
-            this.btnDeThemso.Text = "Thêm số";
-            this.btnDeThemso.UseVisualStyleBackColor = true;
-            this.btnDeThemso.Click += new System.EventHandler(this.btnDeThemso_Click);
-            // 
-            // btnDeXemso
-            // 
-            this.btnDeXemso.Location = new System.Drawing.Point(188, 83);
-            this.btnDeXemso.Name = "btnDeXemso";
-            this.btnDeXemso.Size = new System.Drawing.Size(75, 23);
-            this.btnDeXemso.TabIndex = 2;
-            this.btnDeXemso.Text = "Xem chi tiết";
-            this.btnDeXemso.UseVisualStyleBackColor = true;
+            this.lblErrorMsg.AutoSize = true;
+            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMsg.Location = new System.Drawing.Point(29, 489);
+            this.lblErrorMsg.Name = "lblErrorMsg";
+            this.lblErrorMsg.Size = new System.Drawing.Size(0, 13);
+            this.lblErrorMsg.TabIndex = 6;
             // 
             // Form2
             // 
@@ -391,6 +395,7 @@ namespace MatrixOfNumber
             this.gbSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhach)).EndInit();
             this.tbBang.ResumeLayout(false);
+            this.tbBang.PerformLayout();
             this.gbDe.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDe)).EndInit();
             this.gbLo.ResumeLayout(false);
@@ -416,7 +421,6 @@ namespace MatrixOfNumber
         private System.Windows.Forms.TextBox txtNameSearch;
         private System.Windows.Forms.Label lblSearchName;
         private System.Windows.Forms.Label lblErrorMsg;
-        private System.Windows.Forms.Button btnXembang;
         private System.Windows.Forms.DateTimePicker dtpBang;
         private System.Windows.Forms.Button btnXemketqua;
         private System.Windows.Forms.GroupBox gbDe;
@@ -428,5 +432,6 @@ namespace MatrixOfNumber
         private System.Windows.Forms.DataGridView dgvLo;
         private System.Windows.Forms.Button btnDeXemso;
         private System.Windows.Forms.Button btnDeThemso;
+        private System.Windows.Forms.Label lblDateBang;
     }
 }

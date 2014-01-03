@@ -143,18 +143,6 @@ namespace MatrixOfNumber
             }
         }
 
-        private void btnXembang_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime bangDate = dtpBang.Value;
-                loadBang();
-            }
-            catch (Exception ex)
-            {
-                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
-            }
-        }
 
         public void reloadBang()
         {
@@ -165,12 +153,12 @@ namespace MatrixOfNumber
             try
             {
                 DataConnection dc = new DataConnection();
-                string d = dtpBang.Value.ToShortDateString();
-                DataSet ds = dc.GetNumberByDate(d);
+                string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
+                DataSet ds = dc.GetNumberByDate(datetime);
                 tblDe = new DataTable();
                 DataColumn col = new DataColumn("mID", typeof(int));
                 tblDe.Columns.Add(col);
-                col = new DataColumn("mDate", typeof(string));               
+                col = new DataColumn("mDate", typeof(string));
                 tblDe.Columns.Add(col);
                 col = new DataColumn("kID", typeof(int));
                 tblDe.Columns.Add(col);
@@ -213,7 +201,19 @@ namespace MatrixOfNumber
                             r[4] = row[4];
                             r[5] = row[5];
                             r[6] = row[6];
-                            tblLo.Rows.Add(r);
+                            bool isExisted = false;
+                            foreach (DataRow tlRow in tblLo.Rows)
+                            {
+                                if (int.Parse(tlRow[5].ToString()) == int.Parse(r[5].ToString()))
+                                {
+                                    tlRow[6] = int.Parse(tlRow[6].ToString()) + int.Parse(r[6].ToString());
+                                    isExisted = true;
+                                }
+                            }
+                            if (!isExisted)
+                            {
+                                tblLo.Rows.Add(r);
+                            }
                         }
                         else
                         {
@@ -225,7 +225,19 @@ namespace MatrixOfNumber
                             r[4] = row[4];
                             r[5] = row[5];
                             r[6] = row[6];
-                            tblDe.Rows.Add(r);
+                            bool isExisted = false;
+                            foreach (DataRow tlRow in tblDe.Rows)
+                            {
+                                if (int.Parse(tlRow[5].ToString()) == int.Parse(r[5].ToString()))
+                                {
+                                    tlRow[6] = int.Parse(tlRow[6].ToString()) + int.Parse(r[6].ToString());
+                                    isExisted = true;
+                                }
+                            }
+                            if (!isExisted)
+                            {
+                                tblDe.Rows.Add(r);
+                            }
                         }
                     }
                     btnLoThemso.Enabled = true;
@@ -287,13 +299,14 @@ namespace MatrixOfNumber
         {
             string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
 
-            ThemSo ts = new ThemSo(0, datetime,this);
+            ThemSo ts = new ThemSo(0, datetime, this);
             ts.ShowDialog(this);
         }
 
         private void btnDeThemso_Click(object sender, EventArgs e)
         {
-            ThemSo ts = new ThemSo(1, dtpBang.Value.ToShortDateString(),this);
+            string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
+            ThemSo ts = new ThemSo(1, datetime, this);
             ts.ShowDialog(this);
         }
 
@@ -301,7 +314,7 @@ namespace MatrixOfNumber
         {
             DataConnection dc = new DataConnection();
             string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
-            bool rs=dc.CreateNewMatrix(datetime);
+            bool rs = dc.CreateNewMatrix(datetime);
             if (rs)
             {
                 loadBang();
@@ -310,6 +323,47 @@ namespace MatrixOfNumber
             else
             {
                 MessageBox.Show("Không thể tạo được bảng!");
+            }
+        }
+
+        private void dtpBang_ValueChanged(object sender, EventArgs e)
+        {
+            loadBang();
+        }
+
+        private void btnLoXemso_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridViewRow selectedRow = dgvLo.SelectedRows[0];
+                string str = selectedRow.Cells[5].Value.ToString();
+                int number = int.Parse(str);
+                string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
+                ChitietSo cts = new ChitietSo(datetime, 0, number, this);
+                cts.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
+                Environment.Exit(0);
+            }
+        }
+
+        private void btnDeXemso_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridViewRow selectedRow = dgvDe.SelectedRows[0];
+                string str = selectedRow.Cells[5].Value.ToString();
+                int number = int.Parse(str);
+                string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
+                ChitietSo cts = new ChitietSo(datetime, 1, number, this);
+                cts.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
+                Environment.Exit(0);
             }
         }
     }
