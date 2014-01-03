@@ -47,7 +47,7 @@ namespace MatrixOfNumber.ui
                 int coin = int.Parse(txtDiem.Text);
 
                 DataConnection dc = new DataConnection();
-                bool rs=dc.AddNewNumber(date, id, type, number, coin);
+                bool rs = dc.AddNewNumber(date, id, cbbLoDe.SelectedIndex, number, coin);
                 if (rs)
                 {
                     lblErrorMsg.Text = "Thêm số thành công.";
