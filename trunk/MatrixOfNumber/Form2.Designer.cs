@@ -79,6 +79,7 @@ namespace MatrixOfNumber
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(688, 465);
             this.tabMain.TabIndex = 1;
+            this.tabMain.Enter += new System.EventHandler(this.BangEnter);
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.ReloadData);
             // 
             // tbKhach

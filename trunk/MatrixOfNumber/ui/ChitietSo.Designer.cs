@@ -101,6 +101,7 @@
             this.btnSua.TabIndex = 5;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // lblSoDtl
             // 
@@ -147,8 +148,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChitietSo";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chi tiết số";
+            this.Enter += new System.EventHandler(this.FormEnter);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

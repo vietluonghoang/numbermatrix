@@ -39,6 +39,21 @@ namespace MatrixOfNumber.utilities
             }
             return false;
         }
+        private bool isMatrixExisted(int mID)
+        {
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("isMatrixExistedByID", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@ID", mID));
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public DataSet GetNumberByDate(string date)
         {
@@ -105,6 +120,43 @@ namespace MatrixOfNumber.utilities
                 cmd.Parameters.Add(new SqlParameter("@nType", nType));
                 cmd.Parameters.Add(new SqlParameter("@nNumber", nNumber));
                 cmd.Parameters.Add(new SqlParameter("@nCoin", nCoin));
+                int rs = cmd.ExecuteNonQuery();
+                if (rs > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool EditNumber(int mID, int kID, int nType, int nNumber, int nCoin, int changeType)
+        {
+            if (!isMatrixExisted(mID))
+            {
+                return false;
+            }
+            if (mID<=0 || kID <= 0 || nType < 0 || nType > 1 || nNumber < 0 || nNumber > 99 || nCoin <= 0)
+            {
+                return false;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("editNumber", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@mID", mID));
+                cmd.Parameters.Add(new SqlParameter("@kID", kID));
+                cmd.Parameters.Add(new SqlParameter("@nType", nType));
+                cmd.Parameters.Add(new SqlParameter("@nNumber", nNumber));
+                cmd.Parameters.Add(new SqlParameter("@nCoin", nCoin));
+                cmd.Parameters.Add(new SqlParameter("@changeType", changeType));
                 int rs = cmd.ExecuteNonQuery();
                 if (rs > 0)
                 {
