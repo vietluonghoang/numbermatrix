@@ -117,6 +117,8 @@ namespace MatrixOfNumber
             }
             if (tabMain.SelectedIndex == 1)
             {
+
+                dtpBang.Value = DateTime.Now;
                 loadBang();
             }
         }
@@ -365,6 +367,11 @@ namespace MatrixOfNumber
                 MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
                 Environment.Exit(0);
             }
+        }
+
+        private void BangEnter(object sender, EventArgs e)
+        {
+            loadBang();
         }
     }
 }
