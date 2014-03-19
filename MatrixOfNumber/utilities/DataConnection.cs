@@ -24,6 +24,7 @@ namespace MatrixOfNumber.utilities
             conn.Open();
             return conn;
         }
+
         private bool isMatrixExisted(string date)
         {
             SqlConnection conn = getConnection();
@@ -39,6 +40,7 @@ namespace MatrixOfNumber.utilities
             }
             return false;
         }
+
         private bool isMatrixExisted(int mID)
         {
             SqlConnection conn = getConnection();
@@ -53,22 +55,6 @@ namespace MatrixOfNumber.utilities
                 return true;
             }
             return false;
-        }
-
-        public DataSet GetNumberByDate(string date)
-        {
-            if (!isMatrixExisted(date))
-            {
-                return null;
-            }
-            SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewNumbersByDate", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@date", date));
-            SqlDataAdapter adater = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adater.Fill(ds);
-            return ds;
         }
 
         public bool CreateNewMatrix(string date)
@@ -98,6 +84,22 @@ namespace MatrixOfNumber.utilities
             {
                 return false;
             }
+        }
+
+        public DataSet GetNumberByDate(string date)
+        {
+            if (!isMatrixExisted(date))
+            {
+                return null;
+            }
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("viewNumbersByDate", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@date", date));
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            return ds;
         }
 
         public bool AddNewNumber(string date, int kID, int nType, int nNumber, int nCoin)
@@ -303,28 +305,6 @@ namespace MatrixOfNumber.utilities
             return false;
         }
 
-        public DataSet GetLoBases()
-        {
-            SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("getAllLoBase", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter adater = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adater.Fill(ds);
-            return ds;
-        }
-
-        public DataSet GetDeBases()
-        {
-            SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("getAllDeBase", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter adater = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adater.Fill(ds);
-            return ds;
-        }
-
         public DataSet GetUserHistoryByID(int kid, string from, string to)
         {
             SqlConnection conn = getConnection();
@@ -380,5 +360,146 @@ namespace MatrixOfNumber.utilities
 
             return ds;
         }
+
+        public DataSet GetLoBases()
+        {
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("getAllLoBase", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            return ds;
+        }
+
+        public bool CreateLoBase(string name, float coso)
+        {
+            if (name == null || "".Equals(name) || coso <= 0 )
+            {
+                return false;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("createNewLoBase", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@blName", name));
+                cmd.Parameters.Add(new SqlParameter("@blBase", coso));
+                int rs = cmd.ExecuteNonQuery();
+                if (rs > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool EditLoBase(int id, string name, float coso)
+        {
+            if (name == null || "".Equals(name) || coso <= 0)
+            {
+                return false;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("updateLoBase", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@blName", name));
+                cmd.Parameters.Add(new SqlParameter("@blBase", coso));
+                cmd.Parameters.Add(new SqlParameter("@blID", id));
+                int rs = cmd.ExecuteNonQuery();
+                if (rs > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public DataSet GetDeBases()
+        {
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("getAllDeBase", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            return ds;
+        }
+
+        public bool CreateDeBase(string name, float coso)
+        {
+            if (name == null || "".Equals(name) || coso <= 0)
+            {
+                return false;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("createNewDeBase", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@bdName", name));
+                cmd.Parameters.Add(new SqlParameter("@bdBase", coso));
+                int rs = cmd.ExecuteNonQuery();
+                if (rs > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool EditDeBase(int id, string name, float coso)
+        {
+            if (name == null || "".Equals(name) || coso <= 0)
+            {
+                return false;
+            }
+            try
+            {
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("updateDeBase", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@bdName", name));
+                cmd.Parameters.Add(new SqlParameter("@bdBase", coso));
+                cmd.Parameters.Add(new SqlParameter("@bdID", id));
+                int rs = cmd.ExecuteNonQuery();
+                if (rs > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }
