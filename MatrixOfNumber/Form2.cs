@@ -117,9 +117,12 @@ namespace MatrixOfNumber
             }
             if (tabMain.SelectedIndex == 1)
             {
-
                 dtpBang.Value = DateTime.Now;
                 loadBang();
+            }
+            if (tabMain.SelectedIndex == 2)
+            {
+                LoadBases();
             }
         }
         private void ReloadKhachTab()
@@ -301,14 +304,14 @@ namespace MatrixOfNumber
         {
             string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
 
-            ThemSo ts = new ThemSo(0, datetime, this);
+            ThemCoSo ts = new ThemCoSo(0, datetime, this);
             ts.ShowDialog(this);
         }
 
         private void btnDeThemso_Click(object sender, EventArgs e)
         {
             string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
-            ThemSo ts = new ThemSo(1, datetime, this);
+            ThemCoSo ts = new ThemCoSo(1, datetime, this);
             ts.ShowDialog(this);
         }
 
@@ -372,6 +375,29 @@ namespace MatrixOfNumber
         private void BangEnter(object sender, EventArgs e)
         {
             loadBang();
+        }
+
+        private void LoadBases()
+        {
+            try
+            {
+                DataConnection dc = new DataConnection();
+                DataSet dsde = dc.GetDeBases();
+                DataSet dslo = dc.GetLoBases();
+                dgvDeBase.DataSource = dsde.Tables[0];
+                dgvLoBase.DataSource = dslo.Tables[0];
+                dgvDeBase.Columns[0].Visible = false;
+                dgvLoBase.Columns[0].Visible = false;
+                dgvDeBase.Columns[1].HeaderText = "Tên nhóm";
+                dgvDeBase.Columns[2].HeaderText = "Cơ sở";
+                dgvLoBase.Columns[1].HeaderText = "Tên nhóm";
+                dgvLoBase.Columns[2].HeaderText = "Cơ sở";
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
+                Environment.Exit(0);
+            }
         }
     }
 }
