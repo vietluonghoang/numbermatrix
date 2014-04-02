@@ -82,7 +82,7 @@ namespace MatrixOfNumber.ui
                     }
                     else
                     {
-                        lblErrorMsg.Text = "Nhập không đúng.";
+                        lblErrorMsg.Text = "Nhập không đúng. Không thể sửa số.";
                     }
                 }
             }

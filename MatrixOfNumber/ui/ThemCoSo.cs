@@ -6,69 +6,66 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MatrixOfNumber.entities;
 using MatrixOfNumber.utilities;
 
 namespace MatrixOfNumber.ui
 {
-    public partial class ThemSo : Form
+    public partial class ThemCoSo : Form
     {
-        private int type;
-        private string date;
+        private int type = 0;
         private Form2 parent;
-        public ThemSo(int type, string date, Form2 parent)
+
+        public ThemCoSo(int type, Form2 parent)
         {
             InitializeComponent();
-            LoadKhach();
-            if (type > -1 && type < 2)
-            {
-                cbbLoDe.SelectedIndex = type;
-            }
-            else
-            {
-                cbbLoDe.SelectedIndex = 0;
-            }
             this.type = type;
-            this.date = date;
             this.parent = parent;
+            cbbLoai.SelectedIndex = type;
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void btnDong_Click(object sender, EventArgs e)
         {
+            parent.reloadBases();
             this.Dispose();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            int id = 0;
-            int number = 0;
-            int coin = 0;
+            float coso = 0;
+            string tennhom = "";
             bool ready = true;
             try
             {
                 try
                 {
-                    id = ((Customer)cbbKhach.SelectedItem).KID;
-                    number = int.Parse((string)cbbSo.SelectedItem);
-                    coin = int.Parse(txtDiem.Text);
+                    coso = float.Parse(txtCoso.Text);
+                    tennhom = txtTennhom.Text;
                 }
                 catch (Exception ex)
                 {
-                    lblErrorMsg.Text = "Nhập không đúng.";
+                    lblError.Text = "Nhập không đúng.";
                     ready = false;
                 }
                 if (ready)
                 {
                     DataConnection dc = new DataConnection();
-                    bool rs = dc.AddNewNumber(date, id, cbbLoDe.SelectedIndex, number, coin);
+                    bool rs = false;
+                    if (type == 0)
+                    {
+                        rs = dc.CreateLoBase(tennhom, coso);
+                    }
+                    else
+                    {
+                        rs = dc.CreateDeBase(tennhom, coso);
+                    }
                     if (rs)
                     {
-                        lblErrorMsg.Text = "Thêm số thành công.";
+                        lblError.Text = "Thêm cơ sở thành công.";
                         parent.reloadBang();
                     }
                     else
                     {
-                        lblErrorMsg.Text = "Nhập không đúng. Không thể thêm số.";
+                        lblError.Text = "Nhập không đúng. Không thể thêm cơ sở.";
                     }
                 }
             }
@@ -78,5 +75,6 @@ namespace MatrixOfNumber.ui
                 Environment.Exit(0);
             }
         }
+
     }
 }

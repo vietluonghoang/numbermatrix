@@ -384,7 +384,7 @@ namespace MatrixOfNumber.utilities
                 SqlCommand cmd = new SqlCommand("createNewLoBase", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@blName", name));
-                cmd.Parameters.Add(new SqlParameter("@blBase", coso));
+                cmd.Parameters.Add(new SqlParameter("@blBase", Math.Round(coso, 2)));
                 int rs = cmd.ExecuteNonQuery();
                 if (rs > 0)
                 {
@@ -413,7 +413,7 @@ namespace MatrixOfNumber.utilities
                 SqlCommand cmd = new SqlCommand("updateLoBase", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@blName", name));
-                cmd.Parameters.Add(new SqlParameter("@blBase", coso));
+                cmd.Parameters.Add(new SqlParameter("@blBase", Math.Round(coso, 2)));
                 cmd.Parameters.Add(new SqlParameter("@blID", id));
                 int rs = cmd.ExecuteNonQuery();
                 if (rs > 0)
@@ -454,7 +454,7 @@ namespace MatrixOfNumber.utilities
                 SqlCommand cmd = new SqlCommand("createNewDeBase", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@bdName", name));
-                cmd.Parameters.Add(new SqlParameter("@bdBase", coso));
+                cmd.Parameters.Add(new SqlParameter("@bdBase", Math.Round(coso, 2)));
                 int rs = cmd.ExecuteNonQuery();
                 if (rs > 0)
                 {
@@ -483,7 +483,7 @@ namespace MatrixOfNumber.utilities
                 SqlCommand cmd = new SqlCommand("updateDeBase", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@bdName", name));
-                cmd.Parameters.Add(new SqlParameter("@bdBase", coso));
+                cmd.Parameters.Add(new SqlParameter("@bdBase", Math.Round(coso, 2)));
                 cmd.Parameters.Add(new SqlParameter("@bdID", id));
                 int rs = cmd.ExecuteNonQuery();
                 if (rs > 0)

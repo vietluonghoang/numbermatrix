@@ -54,17 +54,17 @@ namespace MatrixOfNumber
             this.btnTaobang = new System.Windows.Forms.Button();
             this.dtpBang = new System.Windows.Forms.DateTimePicker();
             this.tbCoso = new System.Windows.Forms.TabPage();
-            this.lblErrorMsg = new System.Windows.Forms.Label();
-            this.btnLoBaseDetails = new System.Windows.Forms.Button();
-            this.btnEditLoBase = new System.Windows.Forms.Button();
-            this.btnNewLoBase = new System.Windows.Forms.Button();
-            this.dgvLoBase = new System.Windows.Forms.DataGridView();
-            this.gbLoBase = new System.Windows.Forms.GroupBox();
             this.gbDeBase = new System.Windows.Forms.GroupBox();
             this.dgvDeBase = new System.Windows.Forms.DataGridView();
             this.btnNewDeBase = new System.Windows.Forms.Button();
             this.btnDeBaseDetails = new System.Windows.Forms.Button();
             this.btnEditDeBase = new System.Windows.Forms.Button();
+            this.gbLoBase = new System.Windows.Forms.GroupBox();
+            this.dgvLoBase = new System.Windows.Forms.DataGridView();
+            this.btnNewLoBase = new System.Windows.Forms.Button();
+            this.btnLoBaseDetails = new System.Windows.Forms.Button();
+            this.btnEditLoBase = new System.Windows.Forms.Button();
+            this.lblErrorMsg = new System.Windows.Forms.Label();
             this.tabMain.SuspendLayout();
             this.tbKhach.SuspendLayout();
             this.gbSearch.SuspendLayout();
@@ -75,10 +75,10 @@ namespace MatrixOfNumber
             this.gbLo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLo)).BeginInit();
             this.tbCoso.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLoBase)).BeginInit();
-            this.gbLoBase.SuspendLayout();
             this.gbDeBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeBase)).BeginInit();
+            this.gbLoBase.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLoBase)).BeginInit();
             this.SuspendLayout();
             // 
             // tabMain
@@ -386,82 +386,6 @@ namespace MatrixOfNumber
             this.tbCoso.Text = "Cơ sở";
             this.tbCoso.UseVisualStyleBackColor = true;
             // 
-            // lblErrorMsg
-            // 
-            this.lblErrorMsg.AutoSize = true;
-            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorMsg.Location = new System.Drawing.Point(29, 489);
-            this.lblErrorMsg.Name = "lblErrorMsg";
-            this.lblErrorMsg.Size = new System.Drawing.Size(0, 13);
-            this.lblErrorMsg.TabIndex = 6;
-            // 
-            // btnLoBaseDetails
-            // 
-            this.btnLoBaseDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoBaseDetails.Location = new System.Drawing.Point(194, 122);
-            this.btnLoBaseDetails.Name = "btnLoBaseDetails";
-            this.btnLoBaseDetails.Size = new System.Drawing.Size(75, 23);
-            this.btnLoBaseDetails.TabIndex = 9;
-            this.btnLoBaseDetails.Text = "Xem chi tiết";
-            this.btnLoBaseDetails.UseVisualStyleBackColor = true;
-            // 
-            // btnEditLoBase
-            // 
-            this.btnEditLoBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditLoBase.Location = new System.Drawing.Point(194, 93);
-            this.btnEditLoBase.Name = "btnEditLoBase";
-            this.btnEditLoBase.Size = new System.Drawing.Size(75, 23);
-            this.btnEditLoBase.TabIndex = 8;
-            this.btnEditLoBase.Text = "Sửa";
-            this.btnEditLoBase.UseVisualStyleBackColor = true;
-            // 
-            // btnNewLoBase
-            // 
-            this.btnNewLoBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewLoBase.Location = new System.Drawing.Point(194, 64);
-            this.btnNewLoBase.Name = "btnNewLoBase";
-            this.btnNewLoBase.Size = new System.Drawing.Size(75, 23);
-            this.btnNewLoBase.TabIndex = 7;
-            this.btnNewLoBase.Text = "Thêm mới";
-            this.btnNewLoBase.UseVisualStyleBackColor = true;
-            // 
-            // dgvLoBase
-            // 
-            this.dgvLoBase.AllowUserToAddRows = false;
-            this.dgvLoBase.AllowUserToDeleteRows = false;
-            this.dgvLoBase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvLoBase.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvLoBase.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvLoBase.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvLoBase.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLoBase.Location = new System.Drawing.Point(14, 19);
-            this.dgvLoBase.Name = "dgvLoBase";
-            this.dgvLoBase.ReadOnly = true;
-            this.dgvLoBase.RowHeadersVisible = false;
-            this.dgvLoBase.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvLoBase.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLoBase.ShowCellErrors = false;
-            this.dgvLoBase.ShowCellToolTips = false;
-            this.dgvLoBase.ShowEditingIcon = false;
-            this.dgvLoBase.ShowRowErrors = false;
-            this.dgvLoBase.Size = new System.Drawing.Size(174, 307);
-            this.dgvLoBase.TabIndex = 6;
-            // 
-            // gbLoBase
-            // 
-            this.gbLoBase.Controls.Add(this.dgvLoBase);
-            this.gbLoBase.Controls.Add(this.btnNewLoBase);
-            this.gbLoBase.Controls.Add(this.btnLoBaseDetails);
-            this.gbLoBase.Controls.Add(this.btnEditLoBase);
-            this.gbLoBase.Location = new System.Drawing.Point(381, 73);
-            this.gbLoBase.Name = "gbLoBase";
-            this.gbLoBase.Size = new System.Drawing.Size(281, 348);
-            this.gbLoBase.TabIndex = 11;
-            this.gbLoBase.TabStop = false;
-            this.gbLoBase.Text = "Cơ sở Lô";
-            // 
             // gbDeBase
             // 
             this.gbDeBase.Controls.Add(this.dgvDeBase);
@@ -508,6 +432,7 @@ namespace MatrixOfNumber
             this.btnNewDeBase.TabIndex = 7;
             this.btnNewDeBase.Text = "Thêm mới";
             this.btnNewDeBase.UseVisualStyleBackColor = true;
+            this.btnNewDeBase.Click += new System.EventHandler(this.btnNewDeBase_Click);
             // 
             // btnDeBaseDetails
             // 
@@ -528,6 +453,85 @@ namespace MatrixOfNumber
             this.btnEditDeBase.TabIndex = 8;
             this.btnEditDeBase.Text = "Sửa";
             this.btnEditDeBase.UseVisualStyleBackColor = true;
+            this.btnEditDeBase.Click += new System.EventHandler(this.btnEditDeBase_Click);
+            // 
+            // gbLoBase
+            // 
+            this.gbLoBase.Controls.Add(this.dgvLoBase);
+            this.gbLoBase.Controls.Add(this.btnNewLoBase);
+            this.gbLoBase.Controls.Add(this.btnLoBaseDetails);
+            this.gbLoBase.Controls.Add(this.btnEditLoBase);
+            this.gbLoBase.Location = new System.Drawing.Point(381, 73);
+            this.gbLoBase.Name = "gbLoBase";
+            this.gbLoBase.Size = new System.Drawing.Size(281, 348);
+            this.gbLoBase.TabIndex = 11;
+            this.gbLoBase.TabStop = false;
+            this.gbLoBase.Text = "Cơ sở Lô";
+            // 
+            // dgvLoBase
+            // 
+            this.dgvLoBase.AllowUserToAddRows = false;
+            this.dgvLoBase.AllowUserToDeleteRows = false;
+            this.dgvLoBase.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvLoBase.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLoBase.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvLoBase.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvLoBase.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLoBase.Location = new System.Drawing.Point(14, 19);
+            this.dgvLoBase.Name = "dgvLoBase";
+            this.dgvLoBase.ReadOnly = true;
+            this.dgvLoBase.RowHeadersVisible = false;
+            this.dgvLoBase.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvLoBase.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvLoBase.ShowCellErrors = false;
+            this.dgvLoBase.ShowCellToolTips = false;
+            this.dgvLoBase.ShowEditingIcon = false;
+            this.dgvLoBase.ShowRowErrors = false;
+            this.dgvLoBase.Size = new System.Drawing.Size(174, 307);
+            this.dgvLoBase.TabIndex = 6;
+            // 
+            // btnNewLoBase
+            // 
+            this.btnNewLoBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewLoBase.Location = new System.Drawing.Point(194, 64);
+            this.btnNewLoBase.Name = "btnNewLoBase";
+            this.btnNewLoBase.Size = new System.Drawing.Size(75, 23);
+            this.btnNewLoBase.TabIndex = 7;
+            this.btnNewLoBase.Text = "Thêm mới";
+            this.btnNewLoBase.UseVisualStyleBackColor = true;
+            this.btnNewLoBase.Click += new System.EventHandler(this.btnNewLoBase_Click);
+            // 
+            // btnLoBaseDetails
+            // 
+            this.btnLoBaseDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoBaseDetails.Location = new System.Drawing.Point(194, 122);
+            this.btnLoBaseDetails.Name = "btnLoBaseDetails";
+            this.btnLoBaseDetails.Size = new System.Drawing.Size(75, 23);
+            this.btnLoBaseDetails.TabIndex = 9;
+            this.btnLoBaseDetails.Text = "Xem chi tiết";
+            this.btnLoBaseDetails.UseVisualStyleBackColor = true;
+            // 
+            // btnEditLoBase
+            // 
+            this.btnEditLoBase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditLoBase.Location = new System.Drawing.Point(194, 93);
+            this.btnEditLoBase.Name = "btnEditLoBase";
+            this.btnEditLoBase.Size = new System.Drawing.Size(75, 23);
+            this.btnEditLoBase.TabIndex = 8;
+            this.btnEditLoBase.Text = "Sửa";
+            this.btnEditLoBase.UseVisualStyleBackColor = true;
+            this.btnEditLoBase.Click += new System.EventHandler(this.btnEditLoBase_Click);
+            // 
+            // lblErrorMsg
+            // 
+            this.lblErrorMsg.AutoSize = true;
+            this.lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorMsg.Location = new System.Drawing.Point(29, 489);
+            this.lblErrorMsg.Name = "lblErrorMsg";
+            this.lblErrorMsg.Size = new System.Drawing.Size(0, 13);
+            this.lblErrorMsg.TabIndex = 6;
             // 
             // Form2
             // 
@@ -553,10 +557,10 @@ namespace MatrixOfNumber
             this.gbLo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLo)).EndInit();
             this.tbCoso.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLoBase)).EndInit();
-            this.gbLoBase.ResumeLayout(false);
             this.gbDeBase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeBase)).EndInit();
+            this.gbLoBase.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLoBase)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
