@@ -304,14 +304,14 @@ namespace MatrixOfNumber
         {
             string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
 
-            ThemCoSo ts = new ThemCoSo(0, datetime, this);
+            ThemSo ts = new ThemSo(0, datetime, this);
             ts.ShowDialog(this);
         }
 
         private void btnDeThemso_Click(object sender, EventArgs e)
         {
             string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
-            ThemCoSo ts = new ThemCoSo(1, datetime, this);
+            ThemSo ts = new ThemSo(1, datetime, this);
             ts.ShowDialog(this);
         }
 
@@ -398,6 +398,42 @@ namespace MatrixOfNumber
                 MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
                 Environment.Exit(0);
             }
+        }
+        public void reloadBases()
+        {
+            LoadBases();
+        }
+
+        private void btnNewDeBase_Click(object sender, EventArgs e)
+        {
+            ThemCoSo tcs = new ThemCoSo(1, this);
+            tcs.ShowDialog(this);
+        }
+
+        private void btnNewLoBase_Click(object sender, EventArgs e)
+        {
+            ThemCoSo tcs = new ThemCoSo(0, this);
+            tcs.ShowDialog(this);
+        }
+
+        private void btnEditLoBase_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvLoBase.SelectedRows[0];
+            SuaCoSo scs = new SuaCoSo(0, int.Parse(row.Cells[0].Value.ToString())
+                                        , row.Cells[1].Value.ToString()
+                                        , float.Parse(row.Cells[2].Value.ToString())
+                                        , this);
+            scs.ShowDialog(this);
+        }
+
+        private void btnEditDeBase_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvDeBase.SelectedRows[0];
+            SuaCoSo scs = new SuaCoSo(1, int.Parse(row.Cells[0].Value.ToString())
+                                        , row.Cells[1].Value.ToString()
+                                        , float.Parse(row.Cells[2].Value.ToString())
+                                        , this);
+            scs.ShowDialog(this);
         }
     }
 }
