@@ -61,7 +61,7 @@ namespace MatrixOfNumber.ui
                     if (rs)
                     {
                         lblError.Text = "Thêm cơ sở thành công.";
-                        parent.reloadBang();
+                        parent.reloadBases();
                     }
                     else
                     {

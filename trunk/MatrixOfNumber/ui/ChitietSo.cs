@@ -31,6 +31,14 @@ namespace MatrixOfNumber.utilities
             DataConnection dc = new DataConnection();
             DataSet ds = dc.ViewNumberDetails(date, type, number);
             dgvDetails.DataSource = ds.Tables[0];
+            if (ds.Tables[0].Rows.Count < 1)
+            {
+                btnSua.Enabled = false;
+            }
+            else
+            {
+                btnSua.Enabled = true;
+            }
             lblNgayDtl.Text = date;
             lblSoDtl.Text = number.ToString();
             if (type == 0)
@@ -44,10 +52,11 @@ namespace MatrixOfNumber.utilities
             dgvDetails.Columns[0].Visible = false;
             dgvDetails.Columns[1].Visible = false;
             dgvDetails.Columns[2].Visible = false;
-            dgvDetails.Columns[3].HeaderText = "Tên khách";
-            dgvDetails.Columns[4].Visible = false;
+            dgvDetails.Columns[3].Visible = false;
+            dgvDetails.Columns[4].HeaderText = "Tên khách";
             dgvDetails.Columns[5].Visible = false;
-            dgvDetails.Columns[6].HeaderText = "Số điểm";
+            dgvDetails.Columns[6].Visible = false;
+            dgvDetails.Columns[7].HeaderText = "Số điểm";
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -59,11 +68,12 @@ namespace MatrixOfNumber.utilities
         private void btnSua_Click(object sender, EventArgs e)
         {
             DataGridViewRow row= dgvDetails.SelectedRows[0];
-            SuaSo ss = new SuaSo(int.Parse(row.Cells[1].Value.ToString())
-                                    , int.Parse(row.Cells[2].Value.ToString())
-                                    , int.Parse(row.Cells[4].Value.ToString())
+            SuaSo ss = new SuaSo(int.Parse(row.Cells[0].Value.ToString()),
+                                    int.Parse(row.Cells[2].Value.ToString())
+                                    , int.Parse(row.Cells[3].Value.ToString())
                                     , int.Parse(row.Cells[5].Value.ToString())
                                     , int.Parse(row.Cells[6].Value.ToString())
+                                    , int.Parse(row.Cells[7].Value.ToString())
                                     , this);
             ss.ShowDialog(this);
         }

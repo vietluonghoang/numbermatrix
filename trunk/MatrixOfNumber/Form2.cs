@@ -161,7 +161,9 @@ namespace MatrixOfNumber
                 string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
                 DataSet ds = dc.GetNumberByDate(datetime);
                 tblDe = new DataTable();
-                DataColumn col = new DataColumn("mID", typeof(int));
+                DataColumn col = new DataColumn("nID", typeof(int));
+                tblDe.Columns.Add(col);
+                col = new DataColumn("mID", typeof(int));
                 tblDe.Columns.Add(col);
                 col = new DataColumn("mDate", typeof(string));
                 tblDe.Columns.Add(col);
@@ -177,6 +179,8 @@ namespace MatrixOfNumber
                 tblDe.Columns.Add(col);
 
                 tblLo = new DataTable();
+                col = new DataColumn("nID", typeof(int));
+                tblLo.Columns.Add(col);
                 col = new DataColumn("mID", typeof(int));
                 tblLo.Columns.Add(col);
                 col = new DataColumn("mDate", typeof(string));
@@ -196,7 +200,7 @@ namespace MatrixOfNumber
                 {
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
-                        if (int.Parse(row[4].ToString()) == 0)
+                        if (int.Parse(row[5].ToString()) == 0)
                         {
                             DataRow r = tblLo.NewRow();
                             r[0] = row[0];
@@ -206,12 +210,13 @@ namespace MatrixOfNumber
                             r[4] = row[4];
                             r[5] = row[5];
                             r[6] = row[6];
+                            r[7] = row[7];
                             bool isExisted = false;
                             foreach (DataRow tlRow in tblLo.Rows)
                             {
-                                if (int.Parse(tlRow[5].ToString()) == int.Parse(r[5].ToString()))
+                                if (int.Parse(tlRow[6].ToString()) == int.Parse(r[6].ToString()))
                                 {
-                                    tlRow[6] = int.Parse(tlRow[6].ToString()) + int.Parse(r[6].ToString());
+                                    tlRow[7] = int.Parse(tlRow[7].ToString()) + int.Parse(r[7].ToString());
                                     isExisted = true;
                                 }
                             }
@@ -230,12 +235,13 @@ namespace MatrixOfNumber
                             r[4] = row[4];
                             r[5] = row[5];
                             r[6] = row[6];
+                            r[7] = row[7];
                             bool isExisted = false;
                             foreach (DataRow tlRow in tblDe.Rows)
                             {
-                                if (int.Parse(tlRow[5].ToString()) == int.Parse(r[5].ToString()))
+                                if (int.Parse(tlRow[6].ToString()) == int.Parse(r[6].ToString()))
                                 {
-                                    tlRow[6] = int.Parse(tlRow[6].ToString()) + int.Parse(r[6].ToString());
+                                    tlRow[7] = int.Parse(tlRow[7].ToString()) + int.Parse(r[7].ToString());
                                     isExisted = true;
                                 }
                             }
@@ -282,6 +288,7 @@ namespace MatrixOfNumber
                     dgvLo.Columns[2].Visible = false;
                     dgvLo.Columns[3].Visible = false;
                     dgvLo.Columns[4].Visible = false;
+                    dgvLo.Columns[5].Visible = false;
                 }
                 dgvDe.DataSource = tblDe;
                 if (dgvDe.Columns.Count > 1)
@@ -291,6 +298,7 @@ namespace MatrixOfNumber
                     dgvDe.Columns[2].Visible = false;
                     dgvDe.Columns[3].Visible = false;
                     dgvDe.Columns[4].Visible = false;
+                    dgvDe.Columns[5].Visible = false;
                 }
             }
             catch (Exception e)
@@ -341,7 +349,7 @@ namespace MatrixOfNumber
             try
             {
                 DataGridViewRow selectedRow = dgvLo.SelectedRows[0];
-                string str = selectedRow.Cells[5].Value.ToString();
+                string str = selectedRow.Cells[6].Value.ToString();
                 int number = int.Parse(str);
                 string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
                 ChitietSo cts = new ChitietSo(datetime, 0, number, this);
@@ -359,7 +367,7 @@ namespace MatrixOfNumber
             try
             {
                 DataGridViewRow selectedRow = dgvDe.SelectedRows[0];
-                string str = selectedRow.Cells[5].Value.ToString();
+                string str = selectedRow.Cells[6].Value.ToString();
                 int number = int.Parse(str);
                 string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
                 ChitietSo cts = new ChitietSo(datetime, 1, number, this);
@@ -434,6 +442,20 @@ namespace MatrixOfNumber
                                         , float.Parse(row.Cells[2].Value.ToString())
                                         , this);
             scs.ShowDialog(this);
+        }
+
+        private void btnDeBaseDetails_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvDeBase.SelectedRows[0];
+            ChiTietCoSo ctcs = new ChiTietCoSo(int.Parse(row.Cells[0].Value.ToString()), 1);
+            ctcs.ShowDialog(this);
+        }
+
+        private void btnLoBaseDetails_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvLoBase.SelectedRows[0];
+            ChiTietCoSo ctcs = new ChiTietCoSo(int.Parse(row.Cells[0].Value.ToString()), 0);
+            ctcs.ShowDialog(this);
         }
     }
 }

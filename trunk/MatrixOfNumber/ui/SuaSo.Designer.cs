@@ -45,7 +45,6 @@ namespace MatrixOfNumber.ui
             this.txtDiem = new System.Windows.Forms.TextBox();
             this.cbbLoDe = new System.Windows.Forms.ComboBox();
             this.lblErrorMsg = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSua
@@ -248,24 +247,12 @@ namespace MatrixOfNumber.ui
             this.lblErrorMsg.Size = new System.Drawing.Size(0, 13);
             this.lblErrorMsg.TabIndex = 10;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(11, 187);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(277, 52);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Chú ý: \r\n- Chỉ nên sửa \"Điểm\". \r\n- Các thay đổi khác có thể ảnh hưởng đến các thô" +
-                "ng tin \r\nhiện có.";
-            // 
             // SuaSo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 246);
             this.ControlBox = false;
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.lblErrorMsg);
             this.Controls.Add(this.cbbLoDe);
             this.Controls.Add(this.txtDiem);
@@ -327,6 +314,5 @@ namespace MatrixOfNumber.ui
         private System.Windows.Forms.TextBox txtDiem;
         private System.Windows.Forms.ComboBox cbbLoDe;
         private Label lblErrorMsg;
-        private Label label5;
     }
 }
