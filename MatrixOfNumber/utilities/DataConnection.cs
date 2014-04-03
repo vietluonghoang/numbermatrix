@@ -138,7 +138,7 @@ namespace MatrixOfNumber.utilities
             }
         }
 
-        public bool EditNumber(int mID, int kID, int nType, int nNumber, int nCoin, int changeType)
+        public bool EditNumber(int nID, int mID, int kID, int nType, int nNumber, int nCoin)
         {
             if (!isMatrixExisted(mID))
             {
@@ -158,7 +158,7 @@ namespace MatrixOfNumber.utilities
                 cmd.Parameters.Add(new SqlParameter("@nType", nType));
                 cmd.Parameters.Add(new SqlParameter("@nNumber", nNumber));
                 cmd.Parameters.Add(new SqlParameter("@nCoin", nCoin));
-                cmd.Parameters.Add(new SqlParameter("@changeType", changeType));
+                cmd.Parameters.Add(new SqlParameter("@nID", nID));
                 int rs = cmd.ExecuteNonQuery();
                 if (rs > 0)
                 {
@@ -501,5 +501,65 @@ namespace MatrixOfNumber.utilities
             }
         }
 
+        public DataSet GetBaseHistoryByID(int type, int bid, string from, string to)
+        {
+            SqlConnection conn = getConnection();
+            SqlCommand cmd=null;
+            if (type == 0)
+            {
+                cmd = new SqlCommand("viewLoBaseHistoryByDate", conn);
+            }
+            else
+            {
+                cmd = new SqlCommand("viewDeBaseHistoryByDate", conn);
+            }
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@ID", bid));
+            cmd.Parameters.Add(new SqlParameter("@startDate", from));
+            cmd.Parameters.Add(new SqlParameter("@endDate", to));
+            SqlDataReader dr = cmd.ExecuteReader();
+            DataSet ds = new DataSet();
+            DataTable tb = new DataTable();
+            ds.Tables.Add(tb);
+            DataColumn col = new DataColumn("hid", typeof(int));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("bid", typeof(int));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("bname", typeof(string));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("base", typeof(float));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("oldBaseName", typeof(string));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("newBaseName", typeof(string));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("oldBase", typeof(string));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("newBase", typeof(string));
+            ds.Tables[0].Columns.Add(col);
+            col = new DataColumn("date", typeof(string));
+            ds.Tables[0].Columns.Add(col);
+
+            DataRow row;
+            DataValidation dv = new DataValidation();
+            while (dr.Read())
+            {
+                row = ds.Tables[0].NewRow();
+
+                row[0] = dr[0];
+                row[1] = dr[1];
+                row[2] = dr[2];
+                row[3] = dr[3];
+                row[4] = dr[4];
+                row[5] = dr[5];
+                row[6] = dr[6];
+                row[7] = dr[7];
+                row[8] = dv.GetDateTimeFromSeconds(double.Parse(dr[8].ToString()));
+
+                ds.Tables[0].Rows.Add(row);
+            }
+
+            return ds;
+        }
     }
 }

@@ -13,13 +13,15 @@ namespace MatrixOfNumber.ui
 {
     public partial class SuaSo : Form
     {
+        private int nID;
         private int kID;
         private int mID;
         private int nType;
         private int nNumber;
         private ChitietSo parent;
-        public SuaSo(int mID, int kID, int nType, int nNumber, int nCoin, ChitietSo parent)
+        public SuaSo(int nID,int mID, int kID, int nType, int nNumber, int nCoin, ChitietSo parent)
         {
+            this.nID = nID;
             this.kID = kID;
             this.mID = mID;
             this.nType = nType;
@@ -69,12 +71,12 @@ namespace MatrixOfNumber.ui
                 if (ready)
                 {
                     DataConnection dc = new DataConnection();
-                    int changeType = 0;
-                    if (id != kID || number != nNumber || type != nType)
-                    {
-                        changeType = 1;
-                    }
-                    bool rs = dc.EditNumber(mID, id, type, number, coin, changeType);
+                    //int changeType = 0;
+                    //if (id != kID || number != nNumber || type != nType)
+                    //{
+                    //    changeType = 1;
+                    //}
+                    bool rs = dc.EditNumber(nID, mID, id, type, number, coin);
                     if (rs)
                     {
                         lblErrorMsg.Text = "Sửa số thành công.";

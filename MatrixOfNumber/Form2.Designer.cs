@@ -392,7 +392,7 @@ namespace MatrixOfNumber
             this.gbDeBase.Controls.Add(this.btnNewDeBase);
             this.gbDeBase.Controls.Add(this.btnDeBaseDetails);
             this.gbDeBase.Controls.Add(this.btnEditDeBase);
-            this.gbDeBase.Location = new System.Drawing.Point(28, 73);
+            this.gbDeBase.Location = new System.Drawing.Point(375, 54);
             this.gbDeBase.Name = "gbDeBase";
             this.gbDeBase.Size = new System.Drawing.Size(281, 348);
             this.gbDeBase.TabIndex = 12;
@@ -443,6 +443,7 @@ namespace MatrixOfNumber
             this.btnDeBaseDetails.TabIndex = 9;
             this.btnDeBaseDetails.Text = "Xem chi tiết";
             this.btnDeBaseDetails.UseVisualStyleBackColor = true;
+            this.btnDeBaseDetails.Click += new System.EventHandler(this.btnDeBaseDetails_Click);
             // 
             // btnEditDeBase
             // 
@@ -461,7 +462,7 @@ namespace MatrixOfNumber
             this.gbLoBase.Controls.Add(this.btnNewLoBase);
             this.gbLoBase.Controls.Add(this.btnLoBaseDetails);
             this.gbLoBase.Controls.Add(this.btnEditLoBase);
-            this.gbLoBase.Location = new System.Drawing.Point(381, 73);
+            this.gbLoBase.Location = new System.Drawing.Point(28, 54);
             this.gbLoBase.Name = "gbLoBase";
             this.gbLoBase.Size = new System.Drawing.Size(281, 348);
             this.gbLoBase.TabIndex = 11;
@@ -512,6 +513,7 @@ namespace MatrixOfNumber
             this.btnLoBaseDetails.TabIndex = 9;
             this.btnLoBaseDetails.Text = "Xem chi tiết";
             this.btnLoBaseDetails.UseVisualStyleBackColor = true;
+            this.btnLoBaseDetails.Click += new System.EventHandler(this.btnLoBaseDetails_Click);
             // 
             // btnEditLoBase
             // 
