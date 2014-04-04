@@ -102,6 +102,22 @@ namespace MatrixOfNumber.utilities
             return ds;
         }
 
+        public DataSet GetSummaryByDate(string date)
+        {
+            if (!isMatrixExisted(date))
+            {
+                return null;
+            }
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("summarizeNumbersByDate", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@date", date));
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            return ds;
+        }
+
         public bool AddNewNumber(string date, int kID, int nType, int nNumber, int nCoin)
         {
             if (!isMatrixExisted(date))

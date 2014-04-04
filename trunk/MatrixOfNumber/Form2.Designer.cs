@@ -259,6 +259,7 @@ namespace MatrixOfNumber
             this.btnXemketqua.TabIndex = 2;
             this.btnXemketqua.Text = "Xem kết quả";
             this.btnXemketqua.UseVisualStyleBackColor = true;
+            this.btnXemketqua.Click += new System.EventHandler(this.btnXemketqua_Click);
             // 
             // gbDe
             // 
