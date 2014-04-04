@@ -457,5 +457,32 @@ namespace MatrixOfNumber
             ChiTietCoSo ctcs = new ChiTietCoSo(int.Parse(row.Cells[0].Value.ToString()), 0);
             ctcs.ShowDialog(this);
         }
+
+        private void btnXemketqua_Click(object sender, EventArgs e)
+        {
+            DateTime date=dtpBang.Value;
+            DateTime currentDate = DateTime.Now;
+            if (currentDate.Date == date.Date)
+            {
+                if ((currentDate.Hour >= 18 && currentDate.Minute > 30) || (currentDate.Hour >= 19))
+                {
+                    KetBang kb = new KetBang(date);
+                    kb.ShowDialog(this);
+                }
+                else
+                {
+                    MessageBox.Show("Chưa đến giờ kết quả. Hãy chờ qua 18h30 nhé!");
+                }
+            }
+            else if (currentDate < date)
+            {
+                MessageBox.Show("Chưa có kết quả cho ngày này!");
+            }
+            else
+            {
+                KetBang kb = new KetBang(date);
+                kb.ShowDialog(this);
+            }
+        }
     }
 }
