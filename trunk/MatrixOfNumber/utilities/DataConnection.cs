@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Data;
+using MatrixOfNumber.entities;
 
 namespace MatrixOfNumber.utilities
 {
@@ -576,6 +577,60 @@ namespace MatrixOfNumber.utilities
             }
 
             return ds;
+        }
+
+        public List<TypeNumber> getNumberType(DateTime date)
+        {
+            string datetime = String.Format("{0:d-M-yyyy}", date);
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("viewResultByDate", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@date", date));
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            List<TypeNumber> lstNum=null;
+            string[] title = { "Giải đặc biệt", "Giải nhất", "Giải nhì", "Giải ba", "Giải tư", "Giải năm", "Giải sáu", "Giải bảy" };
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                Result result;
+                string header = "KẾT QUẢ XỔ SỐ MIỀN BẮC NGÀY " + datetime;
+                List<Prize> prz = new List<Prize>();
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+
+                    int i = int.Parse(row[1].ToString());
+
+                    
+                    Prize p = new Prize(title[i], row[2].ToString());
+                    prz.Add(p);
+                }
+                result = new Result(datetime, header, prz);
+                lstNum=result.getNumbers();
+            }
+            else
+            {
+                GetDataFromWeb gdfw = new GetDataFromWeb();
+                Result result = gdfw.getResult(datetime);
+                lstNum = result.getNumbers();
+
+                foreach (Prize p in result.Prizes)
+                {
+                    string res = p.Number;
+                    int type = Array.IndexOf(title, p.Label);
+                    cmd = new SqlCommand("insertResultByDate", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@date", datetime));
+                    cmd.Parameters.Add(new SqlParameter("@type", type));
+                    cmd.Parameters.Add(new SqlParameter("@result", res));
+                    int rs = cmd.ExecuteNonQuery();
+                    if (rs <= 0)                    
+                    {
+                        return null;
+                    }
+                }
+            }
+            return lstNum;
         }
     }
 }
