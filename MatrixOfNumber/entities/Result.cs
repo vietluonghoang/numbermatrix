@@ -34,5 +34,41 @@ namespace MatrixOfNumber.entities
             set { this.prizes = value; }
             get { return this.prizes; }
         }
+
+        public List<TypeNumber> getNumbers()
+        {
+            List<TypeNumber> lstNum = null;
+            if (this.prizes.Count > 0)
+            {
+                lstNum = new List<TypeNumber>();
+                foreach (Prize p in prizes)
+                {
+                    if ("Giải đặc biệt".Equals(p.Label))
+                    {
+                        TypeNumber tp = new TypeNumber(1, int.Parse(splitNumber(p.Number)[0]));
+                        lstNum.Add(tp);
+                    }
+                    else
+                    {
+                        foreach (string s in splitNumber(p.Number))
+                        {
+                            TypeNumber tp = new TypeNumber(0, int.Parse(s));
+                            lstNum.Add(tp);
+                        }
+                    }
+                }
+            }
+            return lstNum;
+        }
+        private List<string> splitNumber(string prize)
+        {
+            string[] tn = prize.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+            List<string> rs = new List<string>();
+            foreach (string s in tn)
+            {
+                rs.Add(s.Substring(s.Length-2));
+            }
+            return rs;
+        }
     }
 }

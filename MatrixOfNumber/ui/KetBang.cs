@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using MatrixOfNumber.utilities;
 using System.Collections;
+using MatrixOfNumber.entities;
 
 namespace MatrixOfNumber.ui
 {
@@ -16,23 +17,70 @@ namespace MatrixOfNumber.ui
         private DateTime date;
         private DataTable tblLo;
         private DataTable tblDe;
-        private ArrayList kqua;
+        List<TypeNumber> kqua;
+        private float duocLo;
+        private float thuaLo;
+        private float duocDe;
+        private float thuaDe;
+
         public KetBang(DateTime date)
         {
             InitializeComponent();
             this.date = date;
-            this.lblTitle.Text = "Kết quả ngày: " + String.Format("{0:d-M-yyyy}",date);
+            this.lblTitle.Text = "Kết quả ngày: " + String.Format("{0:d-M-yyyy}", date);
+            initData(date);
             loadData();
+        }
+
+        private void initData(DateTime date)
+        {
+            DataConnection dc = new DataConnection();
+            kqua = dc.getNumberType(date);
         }
 
         private void loadData()
         {
-            kqua = new ArrayList();
-            kqua.Add(1);
-            kqua.Add(2);
-            kqua.Add(3);
-            kqua.Add(4);
+            //kqua = new ArrayList();
+            //kqua.Add(1);
+            //kqua.Add(2);
+            //kqua.Add(3);
+            //kqua.Add(4);
             loadBang();
+            lblDuocDe.Text = "Được: " + duocDe.ToString();
+            lblThuaDe.Text = "Thua: " + thuaDe.ToString();
+            lblDuocLo.Text = "Được: " + duocLo.ToString();
+            lblThuaLo.Text = "Thua: " + thuaLo.ToString();
+            float tongde = duocDe - thuaDe;
+            float tonglo = duocLo - thuaLo;
+            if (tongde > 0)
+            {
+                lblTongDe.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lblTongDe.ForeColor = Color.Red;
+            }
+            if (tonglo > 0)
+            {
+                lblTongLo.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lblTongLo.ForeColor = Color.Red;
+            }
+            lblTongDe.Text = "Tổng: "+Math.Abs(tongde).ToString();
+            lblTongLo.Text = "Tổng: "+Math.Abs(tonglo).ToString();
+            float tongket = tongde + tonglo;
+            if (tongket > 0)
+            {
+                lblTongket.ForeColor = Color.Blue;
+                lblTongket.Text = "Hôm nay được: " + Math.Abs(tongket).ToString();
+            }
+            else
+            {
+                lblTongket.ForeColor = Color.Red;
+                lblTongket.Text = "Hôm nay thua: " + Math.Abs(tongket).ToString();
+            }
         }
         private void loadBang()
         {
@@ -114,9 +162,9 @@ namespace MatrixOfNumber.ui
                             float thua = int.Parse(row[7].ToString()) * 80;
 
                             bool trung = false;
-                            foreach (ArrayList kq in kqua)
+                            foreach (TypeNumber kq in kqua)
                             {
-                                if (row[6] == kq)
+                                if ((int.Parse(row[6].ToString()) == kq.Number)&&kq.Type==0)
                                 {
                                     trung = true;
                                     break;
@@ -136,7 +184,7 @@ namespace MatrixOfNumber.ui
 
                             bool isExisted = false;
                             foreach (DataRow tlRow in tblLo.Rows)
-                            {                                
+                            {
                                 if (int.Parse(tlRow[6].ToString()) == int.Parse(r[6].ToString()))
                                 {
                                     tlRow[7] = int.Parse(tlRow[7].ToString()) + int.Parse(r[7].ToString());
@@ -149,6 +197,8 @@ namespace MatrixOfNumber.ui
                             {
                                 tblLo.Rows.Add(r);
                             }
+                            duocLo += float.Parse(r[10].ToString());
+                            thuaLo += float.Parse(r[11].ToString());
                         }
                         else
                         {
@@ -163,12 +213,38 @@ namespace MatrixOfNumber.ui
                             r[7] = row[7];
                             r[8] = row[10];
                             r[9] = row[11];
-                            bool isExisted = false;
-                            foreach (DataRow tlRow in tblDe.Rows)
+                            float duoc = int.Parse(row[7].ToString());
+                            float thua = int.Parse(row[7].ToString()) * float.Parse(row[11].ToString());
+
+                            bool trung = false;
+                            foreach (TypeNumber kq in kqua)
                             {
-                                if (int.Parse(tlRow[6].ToString()) == int.Parse(r[6].ToString()))
+                                if ((int.Parse(row[6].ToString()) == kq.Number) && kq.Type == 1)
                                 {
-                                    tlRow[7] = int.Parse(tlRow[7].ToString()) + int.Parse(r[7].ToString());
+                                    trung = true;
+                                    break;
+                                }
+
+                            }
+                            if (trung)
+                            {
+                                duoc = 0;
+                            }
+                            else
+                            {
+                                thua = 0;
+                            }
+                            r[10] = duoc;
+                            r[11] = thua;
+
+                            bool isExisted = false;
+                            foreach (DataRow tdRow in tblDe.Rows)
+                            {
+                                if (int.Parse(tdRow[6].ToString()) == int.Parse(r[6].ToString()))
+                                {
+                                    tdRow[7] = int.Parse(tdRow[7].ToString()) + int.Parse(r[7].ToString());
+                                    tdRow[10] = float.Parse(tdRow[10].ToString()) + float.Parse(r[10].ToString());
+                                    tdRow[11] = float.Parse(tdRow[11].ToString()) + float.Parse(r[11].ToString());
                                     isExisted = true;
                                 }
                             }
@@ -176,9 +252,11 @@ namespace MatrixOfNumber.ui
                             {
                                 tblDe.Rows.Add(r);
                             }
+                            duocDe += float.Parse(r[10].ToString());
+                            thuaDe += float.Parse(r[11].ToString());
                         }
                     }
-                   
+
                     btnDeXemso.Enabled = true;
                     btnLoXemso.Enabled = true;
                 }
@@ -196,7 +274,7 @@ namespace MatrixOfNumber.ui
                     r = tblLo.NewRow();
                     r[0] = "Không có";
                     tblLo.Rows.Add(r);
-                   
+
                     btnDeXemso.Enabled = false;
                     btnLoXemso.Enabled = false;
                 }
@@ -209,6 +287,8 @@ namespace MatrixOfNumber.ui
                     dgvLo.Columns[3].Visible = false;
                     dgvLo.Columns[4].Visible = false;
                     dgvLo.Columns[5].Visible = false;
+                    dgvLo.Columns[8].Visible = false;
+                    dgvLo.Columns[9].Visible = false;
                 }
                 dgvDe.DataSource = tblDe;
                 if (dgvDe.Columns.Count > 1)
@@ -219,13 +299,20 @@ namespace MatrixOfNumber.ui
                     dgvDe.Columns[3].Visible = false;
                     dgvDe.Columns[4].Visible = false;
                     dgvDe.Columns[5].Visible = false;
+                    dgvDe.Columns[8].Visible = false;
+                    dgvDe.Columns[9].Visible = false;
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!"+e.Message);
+                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!" + e.Message);
                 Environment.Exit(0);
             }
+        }
+
+        private void btnLoXemso_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

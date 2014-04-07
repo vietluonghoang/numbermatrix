@@ -59,6 +59,7 @@
     <Compile Include="entities\LoBase.cs" />
     <Compile Include="entities\Prize.cs" />
     <Compile Include="entities\Result.cs" />
+    <Compile Include="entities\TypeNumber.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
