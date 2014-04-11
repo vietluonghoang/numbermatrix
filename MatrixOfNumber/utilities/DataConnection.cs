@@ -610,23 +610,32 @@ namespace MatrixOfNumber.utilities
             }
             else
             {
-                GetDataFromWeb gdfw = new GetDataFromWeb();
-                Result result = gdfw.getResult(datetime);
-                lstNum = result.getNumbers();
-
-                foreach (Prize p in result.Prizes)
+                if ((DateTime.Now.Day - date.Day > 6 && DateTime.Now.Month == date.Month) 
+                    || (DateTime.Now.Month > date.Month && ((DateTime.Now.Day + (30-date.Day))> 5)) 
+                    || (DateTime.Now.Month < date.Month))
                 {
-                    string res = p.Number;
-                    int type = Array.IndexOf(title, p.Label);
-                    cmd = new SqlCommand("insertResultByDate", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@date", datetime));
-                    cmd.Parameters.Add(new SqlParameter("@type", type));
-                    cmd.Parameters.Add(new SqlParameter("@result", res));
-                    int rs = cmd.ExecuteNonQuery();
-                    if (rs <= 0)                    
+                    return lstNum;
+                }
+                else
+                {
+                    GetDataFromWeb gdfw = new GetDataFromWeb();
+                    Result result = gdfw.getResult(datetime);
+                    lstNum = result.getNumbers();
+
+                    foreach (Prize p in result.Prizes)
                     {
-                        return null;
+                        string res = p.Number;
+                        int type = Array.IndexOf(title, p.Label);
+                        cmd = new SqlCommand("insertResultByDate", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@date", datetime));
+                        cmd.Parameters.Add(new SqlParameter("@type", type));
+                        cmd.Parameters.Add(new SqlParameter("@result", res));
+                        int rs = cmd.ExecuteNonQuery();
+                        if (rs <= 0)
+                        {
+                            return null;
+                        }
                     }
                 }
             }

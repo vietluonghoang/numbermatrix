@@ -91,6 +91,14 @@
       <DependentUpon>ChiTietCoso.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ui\ChiTietKetQua.resx">
+      <DependentUpon>ChiTietKetQua.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\ChiTietKetquaTheoKhach.resx">
+      <DependentUpon>ChiTietKetquaTheoKhach.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ui\ChiTietKhach.resx">
       <DependentUpon>ChiTietKhach.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -145,6 +153,18 @@
     </Compile>
     <Compile Include="ui\ChiTietCoso.Designer.cs">
       <DependentUpon>ChiTietCoso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\ChiTietKetQua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\ChiTietKetQua.Designer.cs">
+      <DependentUpon>ChiTietKetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\ChiTietKetquaTheoKhach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\ChiTietKetquaTheoKhach.Designer.cs">
+      <DependentUpon>ChiTietKetquaTheoKhach.cs</DependentUpon>
     </Compile>
     <Compile Include="ui\ChiTietKhach.cs">
       <SubType>Form</SubType>

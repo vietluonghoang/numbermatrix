@@ -42,6 +42,8 @@
             this.lblTongDe = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblTongket = new System.Windows.Forms.Label();
+            this.btnXemTheoKhach = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.gbDe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDe)).BeginInit();
             this.gbLo.SuspendLayout();
@@ -52,7 +54,7 @@
             // 
             this.gbDe.Controls.Add(this.btnDeXemso);
             this.gbDe.Controls.Add(this.dgvDe);
-            this.gbDe.Location = new System.Drawing.Point(357, 42);
+            this.gbDe.Location = new System.Drawing.Point(353, 63);
             this.gbDe.Name = "gbDe";
             this.gbDe.Size = new System.Drawing.Size(298, 375);
             this.gbDe.TabIndex = 3;
@@ -67,6 +69,7 @@
             this.btnDeXemso.TabIndex = 2;
             this.btnDeXemso.Text = "Xem chi tiết";
             this.btnDeXemso.UseVisualStyleBackColor = true;
+            this.btnDeXemso.Click += new System.EventHandler(this.btnDeXemso_Click);
             // 
             // dgvDe
             // 
@@ -87,7 +90,7 @@
             // 
             this.gbLo.Controls.Add(this.btnLoXemso);
             this.gbLo.Controls.Add(this.dgvLo);
-            this.gbLo.Location = new System.Drawing.Point(29, 42);
+            this.gbLo.Location = new System.Drawing.Point(25, 63);
             this.gbLo.Name = "gbLo";
             this.gbLo.Size = new System.Drawing.Size(309, 375);
             this.gbLo.TabIndex = 2;
@@ -102,6 +105,7 @@
             this.btnLoXemso.TabIndex = 11;
             this.btnLoXemso.Text = "Xem chi tiết";
             this.btnLoXemso.UseVisualStyleBackColor = true;
+            this.btnLoXemso.Click += new System.EventHandler(this.btnLoXemso_Click);
             // 
             // dgvLo
             // 
@@ -122,7 +126,7 @@
             // 
             this.lblDuocLo.AutoSize = true;
             this.lblDuocLo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuocLo.Location = new System.Drawing.Point(131, 430);
+            this.lblDuocLo.Location = new System.Drawing.Point(127, 451);
             this.lblDuocLo.Name = "lblDuocLo";
             this.lblDuocLo.Size = new System.Drawing.Size(45, 13);
             this.lblDuocLo.TabIndex = 4;
@@ -132,7 +136,8 @@
             // 
             this.lblThuaLo.AutoSize = true;
             this.lblThuaLo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThuaLo.Location = new System.Drawing.Point(131, 452);
+            this.lblThuaLo.ForeColor = System.Drawing.Color.Red;
+            this.lblThuaLo.Location = new System.Drawing.Point(127, 473);
             this.lblThuaLo.Name = "lblThuaLo";
             this.lblThuaLo.Size = new System.Drawing.Size(44, 13);
             this.lblThuaLo.TabIndex = 5;
@@ -142,7 +147,7 @@
             // 
             this.lblDuocDe.AutoSize = true;
             this.lblDuocDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuocDe.Location = new System.Drawing.Point(450, 430);
+            this.lblDuocDe.Location = new System.Drawing.Point(446, 451);
             this.lblDuocDe.Name = "lblDuocDe";
             this.lblDuocDe.Size = new System.Drawing.Size(45, 13);
             this.lblDuocDe.TabIndex = 6;
@@ -152,7 +157,8 @@
             // 
             this.lblThuaDe.AutoSize = true;
             this.lblThuaDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThuaDe.Location = new System.Drawing.Point(450, 452);
+            this.lblThuaDe.ForeColor = System.Drawing.Color.Red;
+            this.lblThuaDe.Location = new System.Drawing.Point(446, 473);
             this.lblThuaDe.Name = "lblThuaDe";
             this.lblThuaDe.Size = new System.Drawing.Size(44, 13);
             this.lblThuaDe.TabIndex = 7;
@@ -162,7 +168,7 @@
             // 
             this.lblTongLo.AutoSize = true;
             this.lblTongLo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTongLo.Location = new System.Drawing.Point(149, 476);
+            this.lblTongLo.Location = new System.Drawing.Point(145, 497);
             this.lblTongLo.Name = "lblTongLo";
             this.lblTongLo.Size = new System.Drawing.Size(52, 16);
             this.lblTongLo.TabIndex = 8;
@@ -172,7 +178,7 @@
             // 
             this.lblTongDe.AutoSize = true;
             this.lblTongDe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTongDe.Location = new System.Drawing.Point(474, 476);
+            this.lblTongDe.Location = new System.Drawing.Point(470, 497);
             this.lblTongDe.Name = "lblTongDe";
             this.lblTongDe.Size = new System.Drawing.Size(52, 16);
             this.lblTongDe.TabIndex = 9;
@@ -182,7 +188,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(56, 20);
+            this.lblTitle.Location = new System.Drawing.Point(56, 9);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(90, 13);
             this.lblTitle.TabIndex = 10;
@@ -198,11 +204,34 @@
             this.lblTongket.TabIndex = 11;
             this.lblTongket.Text = "Hôm nay bạn ";
             // 
+            // btnXemTheoKhach
+            // 
+            this.btnXemTheoKhach.Location = new System.Drawing.Point(59, 36);
+            this.btnXemTheoKhach.Name = "btnXemTheoKhach";
+            this.btnXemTheoKhach.Size = new System.Drawing.Size(113, 23);
+            this.btnXemTheoKhach.TabIndex = 12;
+            this.btnXemTheoKhach.Text = "Xem Theo Khách";
+            this.btnXemTheoKhach.UseVisualStyleBackColor = true;
+            this.btnXemTheoKhach.Click += new System.EventHandler(this.btnXemTheoKhach_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(592, 9);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 13;
+            this.btnClose.Text = "Đóng";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // KetBang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(679, 528);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnXemTheoKhach);
             this.Controls.Add(this.lblTongket);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblTongDe);
@@ -213,6 +242,8 @@
             this.Controls.Add(this.lblDuocLo);
             this.Controls.Add(this.gbDe);
             this.Controls.Add(this.gbLo);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "KetBang";
             this.ShowInTaskbar = false;
             this.Text = "Kết Bảng";
@@ -241,5 +272,7 @@
         private System.Windows.Forms.Label lblTongDe;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblTongket;
+        private System.Windows.Forms.Button btnXemTheoKhach;
+        private System.Windows.Forms.Button btnClose;
     }
 }
