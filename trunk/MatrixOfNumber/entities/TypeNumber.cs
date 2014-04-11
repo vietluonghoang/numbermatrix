@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MatrixOfNumber.entities
 {
-    class TypeNumber
+    public class TypeNumber
     {
         private int type;
         private int number;

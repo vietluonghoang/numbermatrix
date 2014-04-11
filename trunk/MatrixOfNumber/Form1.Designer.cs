@@ -169,12 +169,17 @@ namespace MatrixOfNumber
             {
                 //prepare current date
                 DateTime currentDate = DateTime.Now;
-                DateTime date;
+                DateTime date=currentDate;
                 if ((currentDate.Hour >= 18 && currentDate.Minute > 30)||(currentDate.Hour >= 19))
                 {
                     date = currentDate;
                 }
-                else
+                else if ((currentDate.Hour >= 18 && currentDate.Minute < 30) && (currentDate.Hour >= 18 && currentDate.Minute > 15))
+                {
+                    MessageBox.Show("Đang quay, chờ tý nhé!");
+                    Environment.Exit(0);
+
+                }else
                 {
                     date = currentDate.AddHours(-24);
                 }

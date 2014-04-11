@@ -544,7 +544,7 @@ namespace MatrixOfNumber
             this.Controls.Add(this.lblErrorMsg);
             this.Controls.Add(this.tabMain);
             this.Name = "Form2";
-            this.Text = "Kết bảng";
+            this.Text = "Tổng Số";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finished);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.finishup);
             this.tabMain.ResumeLayout(false);

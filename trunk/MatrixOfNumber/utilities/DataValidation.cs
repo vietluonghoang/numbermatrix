@@ -101,8 +101,7 @@ namespace MatrixOfNumber.utilities
             catch (Exception e)
             {
                 return false;
-            }
-            return false;
+            }            
         }
 
         public DateTime GetDateTimeFromSeconds(double seconds)
