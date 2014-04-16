@@ -65,6 +65,7 @@ namespace MatrixOfNumber
             this.btnLoBaseDetails = new System.Windows.Forms.Button();
             this.btnEditLoBase = new System.Windows.Forms.Button();
             this.lblErrorMsg = new System.Windows.Forms.Label();
+            this.btnXemtheokhach = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.tbKhach.SuspendLayout();
             this.gbSearch.SuspendLayout();
@@ -226,6 +227,7 @@ namespace MatrixOfNumber
             // 
             // tbBang
             // 
+            this.tbBang.Controls.Add(this.btnXemtheokhach);
             this.tbBang.Controls.Add(this.lblDateBang);
             this.tbBang.Controls.Add(this.btnXemketqua);
             this.tbBang.Controls.Add(this.gbDe);
@@ -536,6 +538,16 @@ namespace MatrixOfNumber
             this.lblErrorMsg.Size = new System.Drawing.Size(0, 13);
             this.lblErrorMsg.TabIndex = 6;
             // 
+            // btnXemtheokhach
+            // 
+            this.btnXemtheokhach.Location = new System.Drawing.Point(6, 19);
+            this.btnXemtheokhach.Name = "btnXemtheokhach";
+            this.btnXemtheokhach.Size = new System.Drawing.Size(101, 23);
+            this.btnXemtheokhach.TabIndex = 11;
+            this.btnXemtheokhach.Text = "Xem theo khách";
+            this.btnXemtheokhach.UseVisualStyleBackColor = true;
+            this.btnXemtheokhach.Click += new System.EventHandler(this.btnXemtheokhach_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -607,5 +619,6 @@ namespace MatrixOfNumber
         private System.Windows.Forms.Button btnDeBaseDetails;
         private System.Windows.Forms.Button btnEditDeBase;
         private System.Windows.Forms.GroupBox gbLoBase;
+        private System.Windows.Forms.Button btnXemtheokhach;
     }
 }
