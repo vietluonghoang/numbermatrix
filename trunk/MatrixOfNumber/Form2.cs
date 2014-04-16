@@ -484,5 +484,12 @@ namespace MatrixOfNumber
                 kb.ShowDialog(this);
             }
         }
+
+        private void btnXemtheokhach_Click(object sender, EventArgs e)
+        {
+            DateTime date=dtpBang.Value;
+            ChiTietSoTheoKhach ctstk = new ChiTietSoTheoKhach(date);
+            ctstk.ShowDialog(this);
+        }
     }
 }

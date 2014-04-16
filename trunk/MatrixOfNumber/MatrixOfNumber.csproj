@@ -107,6 +107,10 @@
       <DependentUpon>ChitietSo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ui\ChiTietSoTheoKhach.resx">
+      <DependentUpon>ChiTietSoTheoKhach.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ui\KetBang.resx">
       <DependentUpon>KetBang.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -171,6 +175,12 @@
     </Compile>
     <Compile Include="ui\ChiTietKhach.Designer.cs">
       <DependentUpon>ChiTietKhach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\ChiTietSoTheoKhach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\ChiTietSoTheoKhach.Designer.cs">
+      <DependentUpon>ChiTietSoTheoKhach.cs</DependentUpon>
     </Compile>
     <Compile Include="ui\KetBang.cs">
       <SubType>Form</SubType>

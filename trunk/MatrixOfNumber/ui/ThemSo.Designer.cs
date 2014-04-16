@@ -229,6 +229,7 @@ namespace MatrixOfNumber.ui
             // 
             // cbbLoDe
             // 
+            this.cbbLoDe.Enabled = false;
             this.cbbLoDe.FormattingEnabled = true;
             this.cbbLoDe.Items.AddRange(new object[] {
             "Lô",
