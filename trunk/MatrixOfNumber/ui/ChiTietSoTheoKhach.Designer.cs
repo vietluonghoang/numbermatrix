@@ -37,6 +37,8 @@
             this.dgvDe = new System.Windows.Forms.DataGridView();
             this.gbLo = new System.Windows.Forms.GroupBox();
             this.dgvLo = new System.Windows.Forms.DataGridView();
+            this.lblTonglo = new System.Windows.Forms.Label();
+            this.lblTongde = new System.Windows.Forms.Label();
             this.gbDe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDe)).BeginInit();
             this.gbLo.SuspendLayout();
@@ -139,12 +141,32 @@
             this.dgvLo.Size = new System.Drawing.Size(209, 328);
             this.dgvLo.TabIndex = 7;
             // 
+            // lblTonglo
+            // 
+            this.lblTonglo.AutoSize = true;
+            this.lblTonglo.Location = new System.Drawing.Point(190, 488);
+            this.lblTonglo.Name = "lblTonglo";
+            this.lblTonglo.Size = new System.Drawing.Size(32, 13);
+            this.lblTonglo.TabIndex = 19;
+            this.lblTonglo.Text = "Tổng";
+            // 
+            // lblTongde
+            // 
+            this.lblTongde.AutoSize = true;
+            this.lblTongde.Location = new System.Drawing.Point(465, 488);
+            this.lblTongde.Name = "lblTongde";
+            this.lblTongde.Size = new System.Drawing.Size(32, 13);
+            this.lblTongde.TabIndex = 20;
+            this.lblTongde.Text = "Tổng";
+            // 
             // ChiTietSoTheoKhach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 522);
             this.ControlBox = false;
+            this.Controls.Add(this.lblTongde);
+            this.Controls.Add(this.lblTonglo);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnXem);
@@ -178,5 +200,7 @@
         private System.Windows.Forms.DataGridView dgvDe;
         private System.Windows.Forms.GroupBox gbLo;
         private System.Windows.Forms.DataGridView dgvLo;
+        private System.Windows.Forms.Label lblTonglo;
+        private System.Windows.Forms.Label lblTongde;
     }
 }

@@ -29,6 +29,7 @@ namespace MatrixOfNumber
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tbKhach = new System.Windows.Forms.TabPage();
             this.gbSearch = new System.Windows.Forms.GroupBox();
@@ -41,6 +42,7 @@ namespace MatrixOfNumber
             this.dgvKhach = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tbBang = new System.Windows.Forms.TabPage();
+            this.btnXemtheokhach = new System.Windows.Forms.Button();
             this.lblDateBang = new System.Windows.Forms.Label();
             this.btnXemketqua = new System.Windows.Forms.Button();
             this.gbDe = new System.Windows.Forms.GroupBox();
@@ -65,7 +67,6 @@ namespace MatrixOfNumber
             this.btnLoBaseDetails = new System.Windows.Forms.Button();
             this.btnEditLoBase = new System.Windows.Forms.Button();
             this.lblErrorMsg = new System.Windows.Forms.Label();
-            this.btnXemtheokhach = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.tbKhach.SuspendLayout();
             this.gbSearch.SuspendLayout();
@@ -241,6 +242,16 @@ namespace MatrixOfNumber
             this.tbBang.TabIndex = 1;
             this.tbBang.Text = "Bảng";
             this.tbBang.UseVisualStyleBackColor = true;
+            // 
+            // btnXemtheokhach
+            // 
+            this.btnXemtheokhach.Location = new System.Drawing.Point(6, 19);
+            this.btnXemtheokhach.Name = "btnXemtheokhach";
+            this.btnXemtheokhach.Size = new System.Drawing.Size(101, 23);
+            this.btnXemtheokhach.TabIndex = 11;
+            this.btnXemtheokhach.Text = "Xem theo khách";
+            this.btnXemtheokhach.UseVisualStyleBackColor = true;
+            this.btnXemtheokhach.Click += new System.EventHandler(this.btnXemtheokhach_Click);
             // 
             // lblDateBang
             // 
@@ -538,16 +549,6 @@ namespace MatrixOfNumber
             this.lblErrorMsg.Size = new System.Drawing.Size(0, 13);
             this.lblErrorMsg.TabIndex = 6;
             // 
-            // btnXemtheokhach
-            // 
-            this.btnXemtheokhach.Location = new System.Drawing.Point(6, 19);
-            this.btnXemtheokhach.Name = "btnXemtheokhach";
-            this.btnXemtheokhach.Size = new System.Drawing.Size(101, 23);
-            this.btnXemtheokhach.TabIndex = 11;
-            this.btnXemtheokhach.Text = "Xem theo khách";
-            this.btnXemtheokhach.UseVisualStyleBackColor = true;
-            this.btnXemtheokhach.Click += new System.EventHandler(this.btnXemtheokhach_Click);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -555,7 +556,9 @@ namespace MatrixOfNumber
             this.ClientSize = new System.Drawing.Size(687, 529);
             this.Controls.Add(this.lblErrorMsg);
             this.Controls.Add(this.tabMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tổng Số";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.finished);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.finishup);
