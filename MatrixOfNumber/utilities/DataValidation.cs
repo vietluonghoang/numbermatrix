@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using System.IO;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MatrixOfNumber.utilities
 {
@@ -17,16 +20,34 @@ namespace MatrixOfNumber.utilities
         {
             try
             {
-                string src = "abcd";
-                string key = "2BB3B6E7519DB3278A839E077A8490E5A9378287";
-
+                //string src = "abcd";
+                //string key = "2BB3B6E7519DB3278A839E077A8490E5A9378287";
                 Encoding enc = Encoding.Unicode;
-                string encoded = EncryptText(value, enc);
-                if (encoded.Equals(key))
+
+                if (!File.Exists("D:\\data"))
                 {
+                    refuseAll();
+                    File.Create("D:\\data").Dispose();
+                    TextWriter tw = new StreamWriter("D:\\data");
+                    tw.WriteLine(EncryptText(value, enc));
+                    tw.Close();
                     return true;
                 }
-                return false;
+                else
+                {
+                    StreamReader sr = new StreamReader("D:\\data");
+                    string line = sr.ReadLine();
+
+                    string encoded = EncryptText(value, enc);
+                    if (encoded.Equals(line))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -34,6 +55,24 @@ namespace MatrixOfNumber.utilities
                 Environment.Exit(0);
             }
             return false;
+        }
+
+        private bool refuseAll()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Data Source=IOWA;Initial Catalog=MatrixOfNumbers;Persist Security Info=True;User ID=sa;Password=123456";
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("deleteAll", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            int rs = cmd.ExecuteNonQuery();
+            if (rs > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private string EncryptText(string text, Encoding enc)
@@ -91,6 +130,7 @@ namespace MatrixOfNumber.utilities
             }
             return false;
         }
+
         public bool isFloat(string text)
         {
             try

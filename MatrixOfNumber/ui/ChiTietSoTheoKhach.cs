@@ -167,6 +167,8 @@ namespace MatrixOfNumber.ui
         private void loadData()
         {
             loadBang();
+            int tonglo = 0;
+            int tongde = 0;
             int id = ((Customer)cbbKhach.SelectedItem).KID;
             DataTable tl = tblLo.Clone();
             foreach (DataRow lr in tblLo.Rows)
@@ -174,6 +176,7 @@ namespace MatrixOfNumber.ui
                 if (int.Parse(lr[3].ToString()) == id)
                 {
                     tl.Rows.Add(lr.ItemArray);
+                    tonglo+=int.Parse(lr[7].ToString());
                 }
             }
             DataTable td = tblDe.Clone();
@@ -182,6 +185,7 @@ namespace MatrixOfNumber.ui
                 if (int.Parse(dr[3].ToString()) == id)
                 {
                     td.Rows.Add(dr.ItemArray);
+                    tongde += int.Parse(dr[7].ToString());
                 }
             }
             dgvDe.DataSource = td;
@@ -202,6 +206,8 @@ namespace MatrixOfNumber.ui
             dgvLo.Columns[5].Visible = false;
             dgvLo.Columns[8].Visible = false;
             dgvLo.Columns[9].Visible = false;
+            lblTongde.Text = "Tổng đề: "+tongde.ToString();
+            lblTonglo.Text = "Tổng lô: "+tonglo.ToString();
         }
 
         private void btnXem_Click(object sender, EventArgs e)

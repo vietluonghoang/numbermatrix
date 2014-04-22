@@ -641,5 +641,45 @@ namespace MatrixOfNumber.utilities
             }
             return lstNum;
         }
+
+        public DataSet getResultByDate(DateTime date)
+        {
+            string datetime = String.Format("{0:d-M-yyyy}", date);
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("viewResultByDate", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@date", date));
+            SqlDataAdapter adater = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adater.Fill(ds);
+            return ds;
+        }
+
+        public bool insertResult(Result result, DateTime date)
+        {
+            if (result.Prizes.Count < 1)
+            {
+                return false;
+            }
+            string datetime = String.Format("{0:d-M-yyyy}", date);
+            string[] title = { "Giải đặc biệt", "Giải nhất", "Giải nhì", "Giải ba", "Giải tư", "Giải năm", "Giải sáu", "Giải bảy" };
+            foreach (Prize p in result.Prizes)
+            {
+                string res = p.Number;
+                int type = Array.IndexOf(title, p.Label);
+                SqlConnection conn = getConnection();
+                SqlCommand cmd = new SqlCommand("insertResultByDate", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@date", datetime));
+                cmd.Parameters.Add(new SqlParameter("@type", type));
+                cmd.Parameters.Add(new SqlParameter("@result", res));
+                int rs = cmd.ExecuteNonQuery();
+                if (rs <= 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
