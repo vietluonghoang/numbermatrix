@@ -107,6 +107,8 @@
             this.cbbKhach.Name = "cbbKhach";
             this.cbbKhach.Size = new System.Drawing.Size(171, 21);
             this.cbbKhach.TabIndex = 8;
+            this.cbbKhach.SelectedIndexChanged += new System.EventHandler(this.cbbKhach_SelectedIndexChanged);
+            this.cbbKhach.SelectedValueChanged += new System.EventHandler(this.cbbKhach_SelectedValueChanged);
             // 
             // label1
             // 

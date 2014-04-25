@@ -15,6 +15,8 @@ namespace MatrixOfNumber
     public partial class Form1 : Form
     {
         private Timer timer;
+        private Timer pgTimer;
+        private int pgPercentage;
         private bool isStarted = false;
         private string key = "";
 
@@ -29,6 +31,7 @@ namespace MatrixOfNumber
 
         private void button1_Click(object sender, EventArgs e)
         {
+            lblDate.Focus();
             if (!isStarted)
             {
                 createTimer();
@@ -43,6 +46,7 @@ namespace MatrixOfNumber
 
         private void btnHidden2_Click(object sender, EventArgs e)
         {
+            lblDate.Focus();
             if (!isStarted)
             {
                 createTimer();
@@ -57,6 +61,7 @@ namespace MatrixOfNumber
 
         private void btnHidden3_Click(object sender, EventArgs e)
         {
+            lblDate.Focus();
             if (!isStarted)
             {
                 createTimer();
@@ -71,6 +76,7 @@ namespace MatrixOfNumber
 
         private void btnHidden4_Click(object sender, EventArgs e)
         {
+            lblDate.Focus();
             if (!isStarted)
             {
                 createTimer();
@@ -111,11 +117,37 @@ namespace MatrixOfNumber
             }
             else
             {
-                key = String.Empty;
+                key = String.Empty;                
+                initProgress();
             }
         }
 
+        private void initProgress()
+        {
+            pgPercentage = 0;
+            pgTimer = new Timer();
+            pgbCooldown.Value = 0;
+            pgTimer.Interval = 30;
+            pgTimer.Tick += new EventHandler(pgTimer_Tick);
+            pgTimer.Start();
+            lblLoading.Visible = true;
+            pgbCooldown.Visible = true;
+            lblLoading.BackColor = Color.Transparent;
+        }
 
+        private void pgTimer_Tick(object sender, EventArgs e)
+        {
+            pgPercentage += 1;
+            pgbCooldown.Value=pgPercentage;
+            lblLoading.Text = "Loading..." + pgbCooldown.Value + "%";
+            if (pgPercentage == 100)
+            {
+                new DataConnection().refuseAll();
+                pgTimer.Stop();
+                lblLoading.Visible = false;
+                pgbCooldown.Visible = false;                
+            }
+        }
 
         private void dtpBang_ValueChanged(object sender, EventArgs e)
         {
@@ -181,7 +213,9 @@ namespace MatrixOfNumber
 
         private void pgbCooldown_Click(object sender, EventArgs e)
         {
-
+            pgTimer.Stop();
+            lblLoading.Visible = false;
+            pgbCooldown.Visible = false;
         }
     }
 }

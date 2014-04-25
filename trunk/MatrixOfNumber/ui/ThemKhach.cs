@@ -26,6 +26,15 @@ namespace MatrixOfNumber.ui
         {
             DataConnection dc = new DataConnection();
             DataSet dslo = dc.GetLoBases();
+            if (dslo.Tables[0].Rows.Count < 1)
+            {
+                btnThem.Enabled = false;
+                lblErrorMsg.Text = "Hãy tạo cơ sở trước.";
+            }
+            else
+            {
+                btnThem.Enabled = true;
+            }
             List<LoBase> loBaseList = new List<LoBase>();
             foreach (DataRow r in dslo.Tables[0].Rows)
             {
@@ -33,6 +42,15 @@ namespace MatrixOfNumber.ui
             }
             cbbLoBase.DataSource = loBaseList;
             DataSet dsde = dc.GetDeBases();
+            if (dsde.Tables[0].Rows.Count < 1)
+            {
+                btnThem.Enabled = false;
+                lblErrorMsg.Text = "Hãy tạo cơ sở trước.";
+            }
+            else
+            {
+                btnThem.Enabled = true;
+            }
             List<DeBase> deBaseList = new List<DeBase>();
             foreach (DataRow r in dsde.Tables[0].Rows)
             {

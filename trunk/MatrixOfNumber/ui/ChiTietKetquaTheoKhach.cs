@@ -111,7 +111,7 @@ namespace MatrixOfNumber.ui
                 col = new DataColumn("Thua", typeof(float));
                 tblLo.Columns.Add(col);
 
-                if (ds != null)
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
@@ -231,41 +231,61 @@ namespace MatrixOfNumber.ui
             DataTable tl = tblLo.Clone();
             foreach (DataRow lr in tblLo.Rows)
             {
-                if (int.Parse(lr[3].ToString()) == id)
+                if (!(tblLo.Columns.Count > 7))
                 {
                     tl.Rows.Add(lr.ItemArray);
-                    duocLo += float.Parse(lr[10].ToString());
-                    thuaLo += float.Parse(lr[11].ToString());
+                }
+                else
+                {
+                    if (int.Parse(lr[3].ToString()) == id)
+                    {
+                        tl.Rows.Add(lr.ItemArray);
+                        duocLo += float.Parse(lr[10].ToString());
+                        thuaLo += float.Parse(lr[11].ToString());
+                    }
                 }
             }
             DataTable td = tblDe.Clone();
             foreach (DataRow dr in tblDe.Rows)
             {
-                if (int.Parse(dr[3].ToString()) == id)
+                if (!(tblDe.Columns.Count > 7))
                 {
                     td.Rows.Add(dr.ItemArray);
-                    duocDe += float.Parse(dr[10].ToString());
-                    thuaDe += float.Parse(dr[11].ToString());
+                }
+                else
+                {
+                    if (int.Parse(dr[3].ToString()) == id)
+                    {
+                        td.Rows.Add(dr.ItemArray);
+                        duocDe += float.Parse(dr[10].ToString());
+                        thuaDe += float.Parse(dr[11].ToString());
+                    }
                 }
             }
             dgvDe.DataSource = td;
             dgvLo.DataSource = tl;
-            dgvDe.Columns[0].Visible = false;
-            dgvDe.Columns[1].Visible = false;
-            dgvDe.Columns[2].Visible = false;
-            dgvDe.Columns[3].Visible = false;
-            dgvDe.Columns[4].Visible = false;
-            dgvDe.Columns[5].Visible = false;
-            dgvDe.Columns[8].Visible = false;
-            dgvDe.Columns[9].Visible = false;
-            dgvLo.Columns[0].Visible = false;
-            dgvLo.Columns[1].Visible = false;
-            dgvLo.Columns[2].Visible = false;
-            dgvLo.Columns[3].Visible = false;
-            dgvLo.Columns[4].Visible = false;
-            dgvLo.Columns[5].Visible = false;
-            dgvLo.Columns[8].Visible = false;
-            dgvLo.Columns[9].Visible = false;
+            if (!(tblDe.Columns.Count > 7))
+            {
+                dgvDe.Columns[0].Visible = false;
+                dgvDe.Columns[1].Visible = false;
+                dgvDe.Columns[2].Visible = false;
+                dgvDe.Columns[3].Visible = false;
+                dgvDe.Columns[4].Visible = false;
+                dgvDe.Columns[5].Visible = false;
+                dgvDe.Columns[8].Visible = false;
+                dgvDe.Columns[9].Visible = false;
+            }
+            if (!(tblLo.Columns.Count > 7))
+            {
+                dgvLo.Columns[0].Visible = false;
+                dgvLo.Columns[1].Visible = false;
+                dgvLo.Columns[2].Visible = false;
+                dgvLo.Columns[3].Visible = false;
+                dgvLo.Columns[4].Visible = false;
+                dgvLo.Columns[5].Visible = false;
+                dgvLo.Columns[8].Visible = false;
+                dgvLo.Columns[9].Visible = false;
+            }
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -310,7 +330,87 @@ namespace MatrixOfNumber.ui
                 lblTongket.ForeColor = Color.Red;
                 lblTongket.Text = "Hôm nay thua với khách: " + Math.Abs(tongket).ToString();
             }
-        }     
+        }
+
+        private void cbbKhach_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadData();
+            lblDuocDe.Text = "Được: " + duocDe.ToString();
+            lblThuaDe.Text = "Thua: " + thuaDe.ToString();
+            lblDuocLo.Text = "Được: " + duocLo.ToString();
+            lblThuaLo.Text = "Thua: " + thuaLo.ToString();
+            float tongde = duocDe - thuaDe;
+            float tonglo = duocLo - thuaLo;
+            if (tongde > 0)
+            {
+                lblTongDe.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lblTongDe.ForeColor = Color.Red;
+            }
+            if (tonglo > 0)
+            {
+                lblTongLo.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lblTongLo.ForeColor = Color.Red;
+            }
+            lblTongDe.Text = "Tổng: " + Math.Abs(tongde).ToString();
+            lblTongLo.Text = "Tổng: " + Math.Abs(tonglo).ToString();
+            float tongket = tongde + tonglo;
+            if (tongket > 0)
+            {
+                lblTongket.ForeColor = Color.Blue;
+                lblTongket.Text = "Hôm nay được của khách: " + Math.Abs(tongket).ToString();
+            }
+            else
+            {
+                lblTongket.ForeColor = Color.Red;
+                lblTongket.Text = "Hôm nay thua với khách: " + Math.Abs(tongket).ToString();
+            }
+        }
+
+        private void cbbKhach_SelectedValueChanged(object sender, EventArgs e)
+        {
+            loadData();
+            lblDuocDe.Text = "Được: " + duocDe.ToString();
+            lblThuaDe.Text = "Thua: " + thuaDe.ToString();
+            lblDuocLo.Text = "Được: " + duocLo.ToString();
+            lblThuaLo.Text = "Thua: " + thuaLo.ToString();
+            float tongde = duocDe - thuaDe;
+            float tonglo = duocLo - thuaLo;
+            if (tongde > 0)
+            {
+                lblTongDe.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lblTongDe.ForeColor = Color.Red;
+            }
+            if (tonglo > 0)
+            {
+                lblTongLo.ForeColor = Color.Blue;
+            }
+            else
+            {
+                lblTongLo.ForeColor = Color.Red;
+            }
+            lblTongDe.Text = "Tổng: " + Math.Abs(tongde).ToString();
+            lblTongLo.Text = "Tổng: " + Math.Abs(tonglo).ToString();
+            float tongket = tongde + tonglo;
+            if (tongket > 0)
+            {
+                lblTongket.ForeColor = Color.Blue;
+                lblTongket.Text = "Hôm nay được của khách: " + Math.Abs(tongket).ToString();
+            }
+            else
+            {
+                lblTongket.ForeColor = Color.Red;
+                lblTongket.Text = "Hôm nay thua với khách: " + Math.Abs(tongket).ToString();
+            }
+        }
 
     }
 }

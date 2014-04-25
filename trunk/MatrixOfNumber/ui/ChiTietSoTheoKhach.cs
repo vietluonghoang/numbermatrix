@@ -19,7 +19,7 @@ namespace MatrixOfNumber.ui
 
         public ChiTietSoTheoKhach(DateTime date)
         {
-            InitializeComponent(); 
+            InitializeComponent();
             LoadKhach();
             this.date = date;
             this.lblTitle.Text = "Số ngày: " + String.Format("{0:d-M-yyyy}", date);
@@ -102,7 +102,7 @@ namespace MatrixOfNumber.ui
                 col = new DataColumn("loBase", typeof(float));
                 tblLo.Columns.Add(col);
 
-                if (ds != null)
+                if (ds != null && ds.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow row in ds.Tables[0].Rows)
                     {
@@ -118,7 +118,7 @@ namespace MatrixOfNumber.ui
                             r[6] = row[6];
                             r[7] = row[7];
                             r[8] = row[8];
-                            r[9] = row[9];                          
+                            r[9] = row[9];
 
                             tblLo.Rows.Add(r);
                         }
@@ -135,7 +135,7 @@ namespace MatrixOfNumber.ui
                             r[7] = row[7];
                             r[8] = row[10];
                             r[9] = row[11];
-                            
+
                             tblDe.Rows.Add(r);
                         }
                     }
@@ -173,44 +173,75 @@ namespace MatrixOfNumber.ui
             DataTable tl = tblLo.Clone();
             foreach (DataRow lr in tblLo.Rows)
             {
-                if (int.Parse(lr[3].ToString()) == id)
+                if (!(tblLo.Columns.Count > 7))
                 {
                     tl.Rows.Add(lr.ItemArray);
-                    tonglo+=int.Parse(lr[7].ToString());
+                }
+                else
+                {
+                    if (int.Parse(lr[3].ToString()) == id)
+                    {
+                        tl.Rows.Add(lr.ItemArray);
+                        tonglo += int.Parse(lr[7].ToString());
+                    }
                 }
             }
             DataTable td = tblDe.Clone();
             foreach (DataRow dr in tblDe.Rows)
             {
-                if (int.Parse(dr[3].ToString()) == id)
+                if (!(tblDe.Columns.Count > 7))
                 {
                     td.Rows.Add(dr.ItemArray);
-                    tongde += int.Parse(dr[7].ToString());
+                }
+                else
+                {
+                    if (int.Parse(dr[3].ToString()) == id)
+                    {
+                        td.Rows.Add(dr.ItemArray);
+                        tongde += int.Parse(dr[7].ToString());
+                    }
                 }
             }
             dgvDe.DataSource = td;
             dgvLo.DataSource = tl;
-            dgvDe.Columns[0].Visible = false;
-            dgvDe.Columns[1].Visible = false;
-            dgvDe.Columns[2].Visible = false;
-            dgvDe.Columns[3].Visible = false;
-            dgvDe.Columns[4].Visible = false;
-            dgvDe.Columns[5].Visible = false;
-            dgvDe.Columns[8].Visible = false;
-            dgvDe.Columns[9].Visible = false;
-            dgvLo.Columns[0].Visible = false;
-            dgvLo.Columns[1].Visible = false;
-            dgvLo.Columns[2].Visible = false;
-            dgvLo.Columns[3].Visible = false;
-            dgvLo.Columns[4].Visible = false;
-            dgvLo.Columns[5].Visible = false;
-            dgvLo.Columns[8].Visible = false;
-            dgvLo.Columns[9].Visible = false;
-            lblTongde.Text = "Tổng đề: "+tongde.ToString();
-            lblTonglo.Text = "Tổng lô: "+tonglo.ToString();
+            if (tblDe.Columns.Count > 7)
+            {
+                dgvDe.Columns[0].Visible = false;
+                dgvDe.Columns[1].Visible = false;
+                dgvDe.Columns[2].Visible = false;
+                dgvDe.Columns[3].Visible = false;
+                dgvDe.Columns[4].Visible = false;
+                dgvDe.Columns[5].Visible = false;
+                dgvDe.Columns[8].Visible = false;
+                dgvDe.Columns[9].Visible = false;
+            }
+            if (tblLo.Columns.Count > 7)
+            {
+                dgvLo.Columns[0].Visible = false;
+                dgvLo.Columns[1].Visible = false;
+                dgvLo.Columns[2].Visible = false;
+                dgvLo.Columns[3].Visible = false;
+                dgvLo.Columns[4].Visible = false;
+                dgvLo.Columns[5].Visible = false;
+                dgvLo.Columns[8].Visible = false;
+                dgvLo.Columns[9].Visible = false;
+            }
+            lblTongde.Text = "Tổng đề: " + tongde.ToString();
+            lblTonglo.Text = "Tổng lô: " + tonglo.ToString();
+
         }
 
         private void btnXem_Click(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void cbbKhach_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void cbbKhach_SelectedValueChanged(object sender, EventArgs e)
         {
             loadData();
         }

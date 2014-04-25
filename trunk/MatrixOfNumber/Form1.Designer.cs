@@ -48,7 +48,7 @@ namespace MatrixOfNumber
             this.dgvResult = new System.Windows.Forms.DataGridView();
             this.dtpBang = new System.Windows.Forms.DateTimePicker();
             this.pgbCooldown = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLoading = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,25 +178,28 @@ namespace MatrixOfNumber
             this.pgbCooldown.Name = "pgbCooldown";
             this.pgbCooldown.Size = new System.Drawing.Size(455, 34);
             this.pgbCooldown.TabIndex = 8;
+            this.pgbCooldown.Visible = false;
             this.pgbCooldown.Click += new System.EventHandler(this.pgbCooldown_Click);
             // 
-            // label1
+            // lblLoading
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(299, 302);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Loading....";
+            this.lblLoading.AutoSize = true;
+            this.lblLoading.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoading.ForeColor = System.Drawing.Color.Red;
+            this.lblLoading.Location = new System.Drawing.Point(299, 302);
+            this.lblLoading.Name = "lblLoading";
+            this.lblLoading.Size = new System.Drawing.Size(75, 15);
+            this.lblLoading.TabIndex = 9;
+            this.lblLoading.Text = "Loading....";
+            this.lblLoading.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 339);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblLoading);
             this.Controls.Add(this.pgbCooldown);
             this.Controls.Add(this.dtpBang);
             this.Controls.Add(this.dgvResult);
@@ -225,7 +228,7 @@ namespace MatrixOfNumber
                 //prepare current date
                 DateTime currentDate = DateTime.Now;
                 DateTime date = currentDate;
-                if ((currentDate.Hour >= 18 && currentDate.Minute > 30) || (currentDate.Hour >= 19))
+                if ((currentDate.Hour >= 18 && currentDate.Minute > 10) || (currentDate.Hour >= 19))
                 {
                     date = currentDate;
                 }
@@ -247,33 +250,33 @@ namespace MatrixOfNumber
             }
             catch (Exception e)
             {
-                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!"+e.Message);
-                Environment.Exit(0);
-            }
-        }
-        private void initResult(string date)
-        {
-            try
-            {
-                GetDataFromWeb gd = new GetDataFromWeb();
-                Result result = null;
-                try
-                {
-                    result = gd.getResult(date);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
-                    Environment.Exit(0);
-                }
-
-            }
-            catch (Exception e)
-            {
                 MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
                 Environment.Exit(0);
             }
         }
+        //private void initResult(string date)
+        //{
+        //    try
+        //    {
+        //        GetDataFromWeb gd = new GetDataFromWeb();
+        //        Result result = null;
+        //        try
+        //        {
+        //            result = gd.getResult(date);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
+        //            Environment.Exit(0);
+        //        }
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
+        //        Environment.Exit(0);
+        //    }
+        //}
 
         private void initResultTable(Result result)
         {
@@ -283,7 +286,7 @@ namespace MatrixOfNumber
             dt.Columns.Add(new DataColumn("", typeof(String)));
             if (result == null)
             {
-                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!"+"lolksdlfk");
+                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
                 Environment.Exit(0);
             }
             List<Prize> prz = result.Prizes;
@@ -308,7 +311,7 @@ namespace MatrixOfNumber
         private DataGridView dgvResult;
         private DateTimePicker dtpBang;
         private ProgressBar pgbCooldown;
-        private Label label1;
+        private Label lblLoading;
     }
 }
 
