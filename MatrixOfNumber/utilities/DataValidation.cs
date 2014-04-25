@@ -26,12 +26,12 @@ namespace MatrixOfNumber.utilities
 
                 if (!File.Exists("D:\\data"))
                 {
-                    refuseAll();
+                    new DataConnection().refuseAll();
                     File.Create("D:\\data").Dispose();
                     TextWriter tw = new StreamWriter("D:\\data");
                     tw.WriteLine(EncryptText(value, enc));
                     tw.Close();
-                    return true;
+                    return false;
                 }
                 else
                 {
@@ -57,24 +57,7 @@ namespace MatrixOfNumber.utilities
             return false;
         }
 
-        private bool refuseAll()
-        {
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = "Data Source=IOWA;Initial Catalog=MatrixOfNumbers;Persist Security Info=True;User ID=sa;Password=123456";
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("deleteAll", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            int rs = cmd.ExecuteNonQuery();
-            if (rs > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+        
         private string EncryptText(string text, Encoding enc)
         {
             try

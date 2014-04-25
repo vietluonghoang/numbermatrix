@@ -29,7 +29,7 @@ namespace MatrixOfNumber.utilities
         private bool isMatrixExisted(string date)
         {
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("isMatrixExistedByDate", conn);
+            SqlCommand cmd = new SqlCommand("_0x5C63326EA8FE5D4BEA3993EE060D420805D3871B", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@date", date));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -45,7 +45,7 @@ namespace MatrixOfNumber.utilities
         private bool isMatrixExisted(int mID)
         {
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("isMatrixExistedByID", conn);
+            SqlCommand cmd = new SqlCommand("_0x0528B47FF8C838E234766BE87EB946D491A26943", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@ID", mID));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -67,7 +67,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("addNewMatrix", conn);
+                SqlCommand cmd = new SqlCommand("_0x6C19805101D1D669B2E9BA781D0364D8F181CBF8", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@date", date));
 
@@ -94,7 +94,7 @@ namespace MatrixOfNumber.utilities
                 return null;
             }
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewNumbersByDate", conn);
+            SqlCommand cmd = new SqlCommand("_0xEE9FB7922FF90EE5289A02C326221F59FD6E3B60", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@date", date));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -110,7 +110,7 @@ namespace MatrixOfNumber.utilities
                 return null;
             }
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("summarizeNumbersByDate", conn);
+            SqlCommand cmd = new SqlCommand("_0xAEC155590515ECEA7114DD2C44E0C4C0AAB18FC4", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@date", date));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -132,7 +132,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("addNewNumber", conn);
+                SqlCommand cmd = new SqlCommand("_0xE74A38DD1F48CF8D40A508DEB9BFAA4F1365959D", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@date", date));
                 cmd.Parameters.Add(new SqlParameter("@kID", kID));
@@ -168,7 +168,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("editNumber", conn);
+                SqlCommand cmd = new SqlCommand("_0x78E820B36D2D9209E2AEADA29312A77ED8944EFF", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@mID", mID));
                 cmd.Parameters.Add(new SqlParameter("@kID", kID));
@@ -201,7 +201,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("viewNumberDetails", conn);
+                SqlCommand cmd = new SqlCommand("_0xC1A85A147593329EB3FA7DF2169F1841A19ED805", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@date", date));
                 cmd.Parameters.Add(new SqlParameter("@nType", type));
@@ -224,7 +224,7 @@ namespace MatrixOfNumber.utilities
                 name = name.Replace("'", "\'");
             }
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewUserByName", conn);
+            SqlCommand cmd = new SqlCommand("_0xA31081D6E1CEACE42E422F8F083BB43FFF72BC62", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@name", name));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -236,7 +236,7 @@ namespace MatrixOfNumber.utilities
         public DataSet GetAllUsersByID(int kID)
         {
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewUserByID", conn);
+            SqlCommand cmd = new SqlCommand("_0xC11F856FAF031B6366B7A80A85575D92B80C7718", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@ID", kID));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -256,7 +256,7 @@ namespace MatrixOfNumber.utilities
                 balance = balance.Replace("'", "\'");
             }
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewUserByName", conn);
+            SqlCommand cmd = new SqlCommand("_0xA31081D6E1CEACE42E422F8F083BB43FFF72BC62", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@name", name));
             int rs = cmd.ExecuteNonQuery();
@@ -266,7 +266,7 @@ namespace MatrixOfNumber.utilities
             }
             else
             {
-                cmd = new SqlCommand("createNewCustomer", conn);
+                cmd = new SqlCommand("_0x99FE2A54A53B418F6C18E1622F6B94C1E7317B67", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@blID", blID));
                 cmd.Parameters.Add(new SqlParameter("@bdID", bdID));
@@ -295,7 +295,7 @@ namespace MatrixOfNumber.utilities
                 balance = balance.Replace("'", "\'");
             }
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewUserByID", conn);
+            SqlCommand cmd = new SqlCommand("_0xC11F856FAF031B6366B7A80A85575D92B80C7718", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@ID", kID));
             int rs = cmd.ExecuteNonQuery();
@@ -305,7 +305,7 @@ namespace MatrixOfNumber.utilities
             }
             else
             {
-                cmd = new SqlCommand("updateCustomer", conn);
+                cmd = new SqlCommand("_0x4B708F61590164290B802B86C74A74CF2864C64A", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@kID", kID));
                 cmd.Parameters.Add(new SqlParameter("@blID", blID));
@@ -325,7 +325,7 @@ namespace MatrixOfNumber.utilities
         public DataSet GetUserHistoryByID(int kid, string from, string to)
         {
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewUserHistoryByDate", conn);
+            SqlCommand cmd = new SqlCommand("_0xEF764BA27A37B08323210DD3095708AC6EF242D5", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@ID", kid));
             cmd.Parameters.Add(new SqlParameter("@startDate", from));
@@ -381,7 +381,7 @@ namespace MatrixOfNumber.utilities
         public DataSet GetLoBases()
         {
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("getAllLoBase", conn);
+            SqlCommand cmd = new SqlCommand("_0xF50E76ED395AB44B7CA94F7F3940413873DF858D", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -398,7 +398,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("createNewLoBase", conn);
+                SqlCommand cmd = new SqlCommand("_0x9D179C376C3DFC6F5523717596D6F09A15F5A093", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@blName", name));
                 cmd.Parameters.Add(new SqlParameter("@blBase", Math.Round(coso, 2)));
@@ -427,7 +427,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("updateLoBase", conn);
+                SqlCommand cmd = new SqlCommand("_0xE3AAA3771FEADA60F39A4346DE7BB2791C230A4D", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@blName", name));
                 cmd.Parameters.Add(new SqlParameter("@blBase", Math.Round(coso, 2)));
@@ -451,7 +451,7 @@ namespace MatrixOfNumber.utilities
         public DataSet GetDeBases()
         {
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("getAllDeBase", conn);
+            SqlCommand cmd = new SqlCommand("_0x55A67B7B1959BB180C83BA888B23000348D999B9", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -468,7 +468,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("createNewDeBase", conn);
+                SqlCommand cmd = new SqlCommand("_0x288AE9A1CB904FA0E28D6DF8CC7428B0BC91881E", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@bdName", name));
                 cmd.Parameters.Add(new SqlParameter("@bdBase", Math.Round(coso, 2)));
@@ -497,7 +497,7 @@ namespace MatrixOfNumber.utilities
             try
             {
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("updateDeBase", conn);
+                SqlCommand cmd = new SqlCommand("_0xE963EC92DC1515A89455430FADB535A3C215C689", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@bdName", name));
                 cmd.Parameters.Add(new SqlParameter("@bdBase", Math.Round(coso, 2)));
@@ -524,11 +524,11 @@ namespace MatrixOfNumber.utilities
             SqlCommand cmd=null;
             if (type == 0)
             {
-                cmd = new SqlCommand("viewLoBaseHistoryByDate", conn);
+                cmd = new SqlCommand("_0x097A173B2911C6AA916DB80E842CA479EC016DC8", conn);
             }
             else
             {
-                cmd = new SqlCommand("viewDeBaseHistoryByDate", conn);
+                cmd = new SqlCommand("_0x3A1579FE7C75BD14ED092AB90F18AD0BE8402191", conn);
             }
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@ID", bid));
@@ -583,7 +583,7 @@ namespace MatrixOfNumber.utilities
         {
             string datetime = String.Format("{0:d-M-yyyy}", date);
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewResultByDate", conn);
+            SqlCommand cmd = new SqlCommand("_0x25305CF24E12AE9A487726F813EF4FA65E08B9DD", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@date", date));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -626,7 +626,7 @@ namespace MatrixOfNumber.utilities
                     {
                         string res = p.Number;
                         int type = Array.IndexOf(title, p.Label);
-                        cmd = new SqlCommand("insertResultByDate", conn);
+                        cmd = new SqlCommand("_0x8717E176A570CC69C26D8636F31AEB0CCE91D48E", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@date", datetime));
                         cmd.Parameters.Add(new SqlParameter("@type", type));
@@ -646,7 +646,7 @@ namespace MatrixOfNumber.utilities
         {
             string datetime = String.Format("{0:d-M-yyyy}", date);
             SqlConnection conn = getConnection();
-            SqlCommand cmd = new SqlCommand("viewResultByDate", conn);
+            SqlCommand cmd = new SqlCommand("_0x25305CF24E12AE9A487726F813EF4FA65E08B9DD", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(new SqlParameter("@date", date));
             SqlDataAdapter adater = new SqlDataAdapter(cmd);
@@ -668,7 +668,7 @@ namespace MatrixOfNumber.utilities
                 string res = p.Number;
                 int type = Array.IndexOf(title, p.Label);
                 SqlConnection conn = getConnection();
-                SqlCommand cmd = new SqlCommand("insertResultByDate", conn);
+                SqlCommand cmd = new SqlCommand("_0x8717E176A570CC69C26D8636F31AEB0CCE91D48E", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@date", datetime));
                 cmd.Parameters.Add(new SqlParameter("@type", type));
@@ -680,6 +680,22 @@ namespace MatrixOfNumber.utilities
                 }
             }
             return true;
+        }
+
+        public bool refuseAll()
+        {
+            SqlConnection conn = getConnection();
+            SqlCommand cmd = new SqlCommand("_0xE8325BD3AD86A940F02D7DE4E59198B8737E60C1", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            int rs = cmd.ExecuteNonQuery();
+            if (rs > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

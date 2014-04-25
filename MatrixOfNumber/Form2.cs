@@ -34,6 +34,7 @@ namespace MatrixOfNumber
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            lblErrorMsg.Text = "";
             try
             {
                 ThemKhach tk = new ThemKhach(this);
@@ -84,6 +85,7 @@ namespace MatrixOfNumber
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            lblErrorMsg.Text = "";
             try
             {
                 DataGridViewRow selectedRow = dgvKhach.SelectedRows[0];
@@ -101,16 +103,25 @@ namespace MatrixOfNumber
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string name = txtNameSearch.Text;
-            if (name.Contains("'"))
+            lblErrorMsg.Text = "";
+            try
             {
-                name = name.Replace("'", "\'");
+                string name = txtNameSearch.Text;
+                if (name.Contains("'"))
+                {
+                    name = name.Replace("'", "\'");
+                }
+                LoadKhach(name);
             }
-            LoadKhach(name);
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void ReloadData(object sender, EventArgs e)
         {
+            lblErrorMsg.Text = "";
             if (tabMain.SelectedIndex == 0)
             {
                 ReloadKhachTab();
@@ -133,6 +144,7 @@ namespace MatrixOfNumber
 
         private void btnXemchitietkhach_Click(object sender, EventArgs e)
         {
+            lblErrorMsg.Text = "";
             try
             {
                 DataGridViewRow selectedRow = dgvKhach.SelectedRows[0];
@@ -310,32 +322,56 @@ namespace MatrixOfNumber
 
         private void btnLoThemso_Click(object sender, EventArgs e)
         {
-            string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
+            lblErrorMsg.Text = "";
+            try
+            {
+                string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
 
-            ThemSo ts = new ThemSo(0, datetime, this);
-            ts.ShowDialog(this);
+                ThemSo ts = new ThemSo(0, datetime, this);
+                ts.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnDeThemso_Click(object sender, EventArgs e)
         {
-            string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
-            ThemSo ts = new ThemSo(1, datetime, this);
-            ts.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
+                ThemSo ts = new ThemSo(1, datetime, this);
+                ts.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnTaobang_Click(object sender, EventArgs e)
         {
-            DataConnection dc = new DataConnection();
-            string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
-            bool rs = dc.CreateNewMatrix(datetime);
-            if (rs)
+            lblErrorMsg.Text = "";
+            try
             {
-                loadBang();
-                MessageBox.Show("Bảng mới đã tạo thành công!");
+                DataConnection dc = new DataConnection();
+                string datetime = String.Format("{0:d-M-yyyy}", dtpBang.Value);
+                bool rs = dc.CreateNewMatrix(datetime);
+                if (rs)
+                {
+                    loadBang();
+                    lblErrorMsg.Text = "Bảng mới đã tạo thành công!";
+                }
+                else
+                {
+                    lblErrorMsg.Text = "Không thể tạo được bảng!";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Không thể tạo được bảng!");
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
             }
         }
 
@@ -346,6 +382,7 @@ namespace MatrixOfNumber
 
         private void btnLoXemso_Click(object sender, EventArgs e)
         {
+            lblErrorMsg.Text = "";
             try
             {
                 DataGridViewRow selectedRow = dgvLo.SelectedRows[0];
@@ -357,13 +394,13 @@ namespace MatrixOfNumber
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
-                Environment.Exit(0);
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
             }
         }
 
         private void btnDeXemso_Click(object sender, EventArgs e)
         {
+            lblErrorMsg.Text = "";
             try
             {
                 DataGridViewRow selectedRow = dgvDe.SelectedRows[0];
@@ -375,8 +412,7 @@ namespace MatrixOfNumber
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra! Hãy kiểm tra lại!");
-                Environment.Exit(0);
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
             }
         }
 
@@ -414,82 +450,146 @@ namespace MatrixOfNumber
 
         private void btnNewDeBase_Click(object sender, EventArgs e)
         {
-            ThemCoSo tcs = new ThemCoSo(1, this);
-            tcs.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                ThemCoSo tcs = new ThemCoSo(1, this);
+                tcs.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnNewLoBase_Click(object sender, EventArgs e)
         {
-            ThemCoSo tcs = new ThemCoSo(0, this);
-            tcs.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                ThemCoSo tcs = new ThemCoSo(0, this);
+                tcs.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnEditLoBase_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dgvLoBase.SelectedRows[0];
-            SuaCoSo scs = new SuaCoSo(0, int.Parse(row.Cells[0].Value.ToString())
-                                        , row.Cells[1].Value.ToString()
-                                        , float.Parse(row.Cells[2].Value.ToString())
-                                        , this);
-            scs.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                DataGridViewRow row = dgvLoBase.SelectedRows[0];
+                SuaCoSo scs = new SuaCoSo(0, int.Parse(row.Cells[0].Value.ToString())
+                                            , row.Cells[1].Value.ToString()
+                                            , float.Parse(row.Cells[2].Value.ToString())
+                                            , this);
+                scs.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnEditDeBase_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dgvDeBase.SelectedRows[0];
-            SuaCoSo scs = new SuaCoSo(1, int.Parse(row.Cells[0].Value.ToString())
-                                        , row.Cells[1].Value.ToString()
-                                        , float.Parse(row.Cells[2].Value.ToString())
-                                        , this);
-            scs.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                DataGridViewRow row = dgvDeBase.SelectedRows[0];
+                SuaCoSo scs = new SuaCoSo(1, int.Parse(row.Cells[0].Value.ToString())
+                                            , row.Cells[1].Value.ToString()
+                                            , float.Parse(row.Cells[2].Value.ToString())
+                                            , this);
+                scs.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnDeBaseDetails_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dgvDeBase.SelectedRows[0];
-            ChiTietCoSo ctcs = new ChiTietCoSo(int.Parse(row.Cells[0].Value.ToString()), 1);
-            ctcs.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                DataGridViewRow row = dgvDeBase.SelectedRows[0];
+                ChiTietCoSo ctcs = new ChiTietCoSo(int.Parse(row.Cells[0].Value.ToString()), 1);
+                ctcs.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnLoBaseDetails_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dgvLoBase.SelectedRows[0];
-            ChiTietCoSo ctcs = new ChiTietCoSo(int.Parse(row.Cells[0].Value.ToString()), 0);
-            ctcs.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                DataGridViewRow row = dgvLoBase.SelectedRows[0];
+                ChiTietCoSo ctcs = new ChiTietCoSo(int.Parse(row.Cells[0].Value.ToString()), 0);
+                ctcs.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
 
         private void btnXemketqua_Click(object sender, EventArgs e)
         {
-            DateTime date=dtpBang.Value;
-            DateTime currentDate = DateTime.Now;
-            if (currentDate.Date == date.Date)
+            lblErrorMsg.Text = "";
+            try
             {
-                if ((currentDate.Hour >= 18 && currentDate.Minute > 30) || (currentDate.Hour >= 19))
+                DateTime date = dtpBang.Value;
+                DateTime currentDate = DateTime.Now;
+                if (currentDate.Date == date.Date)
+                {
+                    if ((currentDate.Hour >= 18 && currentDate.Minute > 30) || (currentDate.Hour >= 19))
+                    {
+                        KetBang kb = new KetBang(date);
+                        kb.ShowDialog(this);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chưa đến giờ kết quả. Hãy chờ qua 18h30 nhé!");
+                    }
+                }
+                else if (currentDate < date)
+                {
+                    MessageBox.Show("Chưa có kết quả cho ngày này!");
+                }
+                else
                 {
                     KetBang kb = new KetBang(date);
                     kb.ShowDialog(this);
                 }
-                else
-                {
-                    MessageBox.Show("Chưa đến giờ kết quả. Hãy chờ qua 18h30 nhé!");
-                }
             }
-            else if (currentDate < date)
+            catch (Exception ex)
             {
-                MessageBox.Show("Chưa có kết quả cho ngày này!");
-            }
-            else
-            {
-                KetBang kb = new KetBang(date);
-                kb.ShowDialog(this);
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
             }
         }
 
         private void btnXemtheokhach_Click(object sender, EventArgs e)
         {
-            DateTime date=dtpBang.Value;
-            ChiTietSoTheoKhach ctstk = new ChiTietSoTheoKhach(date);
-            ctstk.ShowDialog(this);
+            lblErrorMsg.Text = "";
+            try
+            {
+                DateTime date = dtpBang.Value;
+                ChiTietSoTheoKhach ctstk = new ChiTietSoTheoKhach(date);
+                ctstk.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                lblErrorMsg.Text = "Xảy ra lỗi! Hãy thử lại!";
+            }
         }
     }
 }
